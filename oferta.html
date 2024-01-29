@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de la Oferta - Portal de Búsqueda de Trabajo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Portal de Trabajo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ofertas de Trabajo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Iniciar Sesión</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Registrarse</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1>Desarrollador Web Full Stack</h1>
+        <p class="text-muted">Publicado el 24 de enero de 2024</p>
+
+        <!-- Detalles de la Oferta -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Descripción del Trabajo</h5>
+                <p class="card-text">Buscamos un desarrollador web entusiasta para unirse a nuestro equipo dinámico. La posición implica trabajar tanto en el front-end como en el back-end de nuestras aplicaciones web.</p>
+
+                <h5 class="card-title">Requisitos</h5>
+                <ul>
+                    <li>Experiencia en HTML, CSS, JavaScript.</li>
+                    <li>Conocimiento de frameworks de back-end como Node.js o Django.</li>
+                    <li>Habilidad para trabajar en equipo y buena comunicación.</li>
+                    <!-- Más requisitos -->
+                </ul>
+
+                <h5 class="card-title">Beneficios</h5>
+                <p class="card-text">Ofrecemos un ambiente de trabajo flexible, oportunidades de crecimiento profesional y más.</p>
+
+                <!-- Botón para Aplicar -->
+                <a href="aplicar.html" class="btn btn-primary">Aplicar a esta Oferta</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+            <small>Portal de Búsqueda de Trabajo © 2024</small>
+        </div>
+    </footer>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="src/js/notifications.js"></script>
+    <script>
+        // Supongamos que esto se llama después de un evento exitoso
+        showNotification('Aplicación enviada con éxito', 'success');
+
+        // O en caso de error
+        showNotification('Error al enviar la aplicación', 'error');
+    </script>
+</body>
+
+</html>

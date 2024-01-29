@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ofertas de Trabajo - Portal de Búsqueda de Trabajo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Portal de Trabajo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ofertas de Trabajo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Iniciar Sesión</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Registrarse</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1>Ofertas de Trabajo</h1>
+        <p>Explora las últimas ofertas de trabajo y encuentra la que mejor se ajusta a tus habilidades y carrera profesional.</p>
+
+
+        <!-- Formulario de Filtro -->
+        <form id="filterForm">
+            <input type="text" id="searchKeyword" placeholder="Palabra clave...">
+            <select id="categorySelect">
+                <option value="all">Todas las Categorías</option>
+                <option value="tecnologia">Tecnología</option>
+                <option value="marketing">Marketing</option>
+                <option value="administracion">Administración</option>
+                <option value="educacion">Educación</option>
+                <!-- Otras categorías -->
+            </select>
+            <button type="submit">Buscar</button>
+        </form>
+
+        <!-- Contenedor para Ofertas -->
+        <div id="offersContainer">
+            <!-- Las ofertas se cargarán aquí dinámicamente -->
+        </div>
+
+
+        <!-- Lista de Ofertas de Trabajo -->
+        <div class="list-group">
+            <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Desarrollador Web Full Stack</h5>
+                    <small>Publicado hace 3 días</small>
+                </div>
+                <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
+                <small>Categoría: Tecnología</small>
+            </a>
+            <a href="oferta.php" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Desarrollador Web Full Stack</h5>
+                    <small>Publicado hace 3 días</small>
+                </div>
+                <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
+                <small>Categoría: Tecnología</small>
+            </a>
+            <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Desarrollador Web Full Stack</h5>
+                    <small>Publicado hace 3 días</small>
+                </div>
+                <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
+                <small>Categoría: Tecnología</small>
+            </a>
+            <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Desarrollador Web Full Stack</h5>
+                    <small>Publicado hace 3 días</small>
+                </div>
+                <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
+                <small>Categoría: Tecnología</small>
+            </a>
+            <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Desarrollador Web Full Stack</h5>
+                    <small>Publicado hace 3 días</small>
+                </div>
+                <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
+                <small>Categoría: Tecnología</small>
+            </a>
+            <!-- Repetir estructura para más ofertas -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+            <small>Portal de Búsqueda de Trabajo © 2024</small>
+        </div>
+    </footer>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="src/js/job-filter.js"></script>
+    <script src="src/js/notifications.js"></script>
+    <script>
+        // Supongamos que esto se llama después de un evento exitoso
+        showNotification('Aplicación enviada con éxito', 'success');
+
+        // O en caso de error
+        showNotification('Error al enviar la aplicación', 'error');
+    </script>
+</body>
+
+</html>
