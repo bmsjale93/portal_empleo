@@ -18,6 +18,13 @@
 
     <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
 
 </head>
 
@@ -45,30 +52,40 @@
 <!-- End Top Bar -->
 
 
-  <!-- ======= Header ======= -->
+<!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex justify-content-between">
+            <div id="logo">
+                <h1><a href="index.html">Work<span>Now</span></a></h1>
+            </div>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a class="nav-link active" href="#hero">Inicio</a></li>
+                        <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
+                        <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+                        <li><a class="nav-link" href="#team">Registrarse</a></li>
+                        <li><a class="nav-link" href="#contact">Contacto</a></li>
+                    </ul>
+                </nav>
 
-        <div id="logo">
-            <h1><a href="index.html">Work<span>Now</span></a></h1>
-        </div>
-        <div>
-            <nav id="navbar" class="navbar">
-                <ul>
-                <li><a class="nav-link active" href="#hero">Inicio</a></li>
-                <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
-                <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
-                <li><a class="nav-link" href="#team">Registrarse</a></li>
-                <li><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-                <i class="fa-solid fa-bars mobile-nav-toggle"></i>
-            </nav>
-        <!-- .navbar -->
-        </div>
+            <div>
+                <!-- Icono del menú hamburguesa -->
+                <i class="fa fa-bars mobile-nav-toggle"></i>
+
+                <!-- Menú (oculto por defecto) -->
+                <nav id="navbar" class="navbar-mobile">
+                    <ul>
+                        <li><a class="nav-link active" href="#hero">Inicio</a></li>
+                        <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
+                        <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+                        <li><a class="nav-link" href="#team">Registrarse</a></li>
+                        <li><a class="nav-link" href="#contact">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
-    <!-- End Header -->
-
+    
     <!-- ======= hero Section ======= -->
     <section id="hero">
 
@@ -311,7 +328,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>

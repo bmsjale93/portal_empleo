@@ -127,6 +127,10 @@ h6 {
   z-index: 997;
   background: #fff;
   box-shadow: 0px 6px 9px 0px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Asegura que el header esté sobre otros elementos */
+  background: #fff; /* O el color que prefieras */
 }
 
 #header #logo h1 {
@@ -285,33 +289,37 @@ h6 {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  display: none;
   color: #0c2e8a;
   font-size: 28px;
   cursor: pointer;
-  display: none;
   line-height: 0;
   transition: 0.5s;
-}
-
-.mobile-nav-toggle.bi-x {
-  color: #fff;
+  display: none !important;
 }
 
 @media (max-width: 991px) {
   .mobile-nav-toggle {
-    display: block;
+    display: block !important;
   }
 
-  .navbar ul {
+  .navbar {
+    display: none !important;
+  }
+
+  .navbar-mobile ul {
     display: none;
+    position: fixed; /* Cambiado de 'fixed' a 'absolute' */
+    top: 0;
   }
 }
+
 
 .navbar-mobile {
   position: fixed;
   overflow: hidden;
+  display: none;
   top: 0;
+  
   right: 0;
   left: 0;
   bottom: 0;
@@ -321,8 +329,8 @@ h6 {
 }
 
 .navbar-mobile .mobile-nav-toggle {
-  position: absolute;
-  top: 15px;
+  position:relative;
+  top: 100px;
   right: 15px;
 }
 
@@ -355,40 +363,6 @@ h6 {
 .navbar-mobile .getstarted,
 .navbar-mobile .getstarted:focus {
   margin: 15px;
-}
-
-.navbar-mobile .dropdown ul {
-  position: static;
-  display: none;
-  margin: 10px 20px;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 1;
-  visibility: visible;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-}
-
-.navbar-mobile .dropdown ul li {
-  min-width: 200px;
-}
-
-.navbar-mobile .dropdown ul a {
-  padding: 10px 20px;
-}
-
-.navbar-mobile .dropdown ul a i {
-  font-size: 12px;
-}
-
-.navbar-mobile .dropdown ul a:hover,
-.navbar-mobile .dropdown ul .active:hover,
-.navbar-mobile .dropdown ul li:hover>a {
-  color: #50d8af;
-}
-
-.navbar-mobile .dropdown>.dropdown-active {
-  display: block;
 }
 
 /*--------------------------------------------------------------
@@ -1335,14 +1309,14 @@ section {
     color: #d33;
 }
 
-.btn-primary {
-    background-color: #50d8af;
-    border-color: #50d8af;
+.btn-primary  {
+    background-color: #50d8af !important; 
+    border-color: #50d8af !important;
 }
 
 .btn-primary:hover {
-    background-color: #3ac29f;
-    border-color: #3ac29f;
+    background-color: #3ac29f !important;
+    border-color: #3ac29f !important;
 }
 
 .form-control {

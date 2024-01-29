@@ -1,3 +1,66 @@
+// Slider para Clientes
+document.addEventListener("DOMContentLoaded", function () {
+  var clientsSwiper = new Swiper(".clients-slider", {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    // Responsive breakpoints
+    breakpoints: {
+      // when window width is <= 480px
+      480: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      // when window width is <= 768px
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      // when window width is <= 1024px
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+    },
+  });
+});
+
+
+// Slider para Testimonios
+document.addEventListener("DOMContentLoaded", function () {
+  var mySwiper = new Swiper(".testimonials-slider", {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    // Responsive breakpoints
+    breakpoints: {
+      // when window width is <= 480px
+      480: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      // when window width is <= 768px
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      // when window width is <= 1024px
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+    },
+  });
+});
+
 // Función para mostrar una notificación
 function showNotification(message, type = "success") {
   const notification = document.createElement("div");
@@ -161,7 +224,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
   const applicationStatusElements = document.querySelectorAll(
     ".application-status"
@@ -199,4 +261,23 @@ document.addEventListener("DOMContentLoaded", function () {
       $("#loginModal").modal("hide");
     });
   }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var navToggle = document.querySelector(".mobile-nav-toggle");
+  var navbarMobile = document.querySelector(".navbar-mobile");
+
+  navToggle.addEventListener("click", function () {
+    var isVisible = navbarMobile.style.display === "block";
+    navbarMobile.style.display = isVisible ? "none" : "block";
+
+    // Asegúrate de que las clases se cambien adecuadamente
+    if (isVisible) {
+      this.classList.remove("fa-times");
+      this.classList.add("fa-bars");
+    } else {
+      this.classList.remove("fa-bars");
+      this.classList.add("fa-times");
+    }
+  });
 });
