@@ -1,116 +1,131 @@
+<?php
+session_start();
+if (isset($_SESSION['nombreUsuario'])) {
+  echo "Sesión iniciada: " . $_SESSION['nombreUsuario'];
+} else {
+  echo "No hay sesión iniciada.";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Portal de Búsqueda de Empleo</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <title>Portal de Búsqueda de Empleo</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-        <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- FontAwesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <!-- AJAX -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 
 </head>
 
 <body>
 
-    <!-- ======= Top Bar ======= -->
+  <!-- ======= Top Bar ======= -->
   <section id="topbar" class="d-flex align-items-center">
-      <div class="container d-flex justify-content-between">
-          <div class="contact-info d-flex align-items-center">
-              <i class="fa fa-envelope d-flex align-items-center">
-                  <a href="mailto:contact@example.com">contacto@trabajoempleo.com</a>
-              </i>
-              <i class="fa fa-phone d-flex align-items-center ms-4">
-                  <span>+34 612 612 612</span>
-              </i>
-          </div>
-          <div class="social-links d-flex align-items-center">
-              <a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
-          </div>
+    <div class="container d-flex justify-content-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="fa fa-envelope d-flex align-items-center">
+          <a href="mailto:contact@example.com">contacto@trabajoempleo.com</a>
+        </i>
+        <i class="fa fa-phone d-flex align-items-center ms-4">
+          <span>+34 612 612 612</span>
+        </i>
       </div>
+      <div class="social-links d-flex align-items-center">
+        <a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </div>
   </section>
-<!-- End Top Bar -->
+  <!-- End Top Bar -->
 
 
-<!-- ======= Header ======= -->
-    <header id="header" class="d-flex align-items-center">
-        <div class="container d-flex justify-content-between">
-            <div id="logo">
-                <h1><a href="index.html">Work<span>Now</span></a></h1>
-            </div>
-                <nav id="navbar" class="navbar">
-                    <ul>
-                        <li><a class="nav-link active" href="#hero">Inicio</a></li>
-                        <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
-                        <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
-                        <li><a class="nav-link" href="#team">Registrarse</a></li>
-                        <li><a class="nav-link" href="#contact">Contacto</a></li>
-                    </ul>
-                </nav>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+      <div id="logo">
+        <h1><a href="index.html">Work<span>Now</span></a></h1>
+      </div>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link active" href="#hero">Inicio</a></li>
+          <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
+          <li><a class="nav-link" href="#contact">Contacto</a></li>
+          <?php if (isset($_SESSION['nombreUsuario'])) : ?>
+            <li><a href="#">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
+          <?php else : ?>
+            <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+            <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
+          <?php endif; ?>
+        </ul>
 
-            <div>
-                <!-- Icono del menú hamburguesa -->
-                <i class="fa fa-bars mobile-nav-toggle"></i>
+      </nav>
+      <div>
+        <!-- Menú (oculto por defecto) -->
+        <nav id="navbar-mobile" class="navbar-mobile">
+          <ul>
+            <li><a class="nav-link active" href="#hero">Inicio</a></li>
+            <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
+            <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+            <li><a class="nav-link register-trigger" href="registerModal">Registrarse</a>
+            <li><a class="nav-link" href="#contact">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+      <i class="fa fa-bars mobile-nav-toggle"></i>
+    </div>
+  </header>
 
-                <!-- Menú (oculto por defecto) -->
-                <nav id="navbar" class="navbar-mobile">
-                    <ul>
-                        <li><a class="nav-link active" href="#hero">Inicio</a></li>
-                        <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
-                        <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
-                        <li><a class="nav-link" href="#team">Registrarse</a></li>
-                        <li><a class="nav-link" href="#contact">Contacto</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-    
-    <!-- ======= hero Section ======= -->
-    <section id="hero">
+  <!-- ======= hero Section ======= -->
+  <section id="hero">
 
-        <div class="hero-content">
-        <h2>Bienvenidos a<br>Work <span>Now</span></h2>
-        <div>
-            <a href="#" class="btn-get-started scrollto">Ofertas de Trabajo</a>
-            <a href="#" class="btn-projects scrollto">Contáctanos Ahora</a>
-        </div>
-        </div>
+    <div class="hero-content">
+      <h2>Bienvenidos a<br>Work <span>Now</span></h2>
+      <div>
+        <a href="#" class="btn-get-started scrollto">Ofertas de Trabajo</a>
+        <a href="#" class="btn-projects scrollto">Contáctanos Ahora</a>
+      </div>
+    </div>
 
-        <div class="hero-slider">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image: url('assets/img/hero-carousel/1.jpg');"></div>
-            <div class="swiper-slide" style="background-image: url('assets/img/hero-carousel/2.jpg');"></div>
-            <div class="swiper-slide" style="background-image: url('assets/img/hero-carousel/3.jpg');"></div>
-            <div class="swiper-slide" style="background-image: url('assets/img/hero-carousel/4.jpg');"></div>
-            <div class="swiper-slide" style="background-image: url('assets/img/hero-carousel/5.jpg');"></div>
-        </div>
-        </div>
+    <div class="hero-slider swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-image: url('assets/img/hero-carousel/1.jpg');"></div>
+        <div class="swiper-slide" style="background-image: url('assets/img/hero-carousel/2.jpg');"></div>
+        <div class="swiper-slide" style="background-image: url('assets/img/hero-carousel/3.jpg');"></div>
+        <div class="swiper-slide" style="background-image: url('assets/img/hero-carousel/4.jpg');"></div>
+        <div class="swiper-slide" style="background-image: url('assets/img/hero-carousel/5.jpg');"></div>
+      </div>
+    </div>
 
-    </section>
-    <!-- End Hero Section -->
+  </section>
+  <!-- End Hero Section -->
 
-    <main id="main">
+  <main id="main">
 
     <!-- ======= About Section ======= -->
     <section id="about">
@@ -123,7 +138,7 @@
           <div class="col-lg-6 content">
             <h2>¿Estás buscando trabajo?</h2>
             <h3>En WorkNow podrás aplicar a los últimos empleos subidos por las empresas asociadas
-                a nuestra plataforma.
+              a nuestra plataforma.
             </h3>
 
             <ul>
@@ -139,7 +154,7 @@
     </section>
     <!-- End About Section -->
 
-<!-- ======= Services Section ======= -->
+    <!-- ======= Services Section ======= -->
     <section id="services">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
@@ -169,7 +184,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="box">
               <div class="icon"><i class="fa-solid fa-key"></i></div>
-              <h4 class="title"><a href="">Regístrate</br>Ahora</a></h4>
+              <h4 class="title register-trigger"><a href="registerModal">Regístrate</br>Ahora</a></h4>
               <p class="description">Crea una cuenta para poder aplicar a ofertas de trabajo y subir tu CV.</p>
             </div>
           </div>
@@ -289,43 +304,26 @@
 
     <!-- Footer -->
     <footer class="py-4 bg-dark text-white-50">
-        <div class="container text-center">
-            <small>Portal de Búsqueda de Trabajo © 2024</small>
-        </div>
+      <div class="container text-center">
+        <small>Portal de Búsqueda de Trabajo © 2024</small>
+      </div>
     </footer>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+    <!-- Contenedores para las Ventanas Emergentes -->
+    <div id="login-modal-container"></div>
+    <div id="register-modal-container"></div>
 
-    <!-- Inicio de sesión Modal -->
-    <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Iniciar Sesión</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalButton">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="loginFormModal">
-                        <div class="form-group">
-                            <label for="emailModal">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="emailModal" placeholder="Ingrese su correo">
-                        </div>
-                        <div class="form-group">
-                            <label for="passwordModal">Contraseña</label>
-                            <input type="password" class="form-control" id="passwordModal" placeholder="Contraseña">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Accede Ahora</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Carga Ventanas Emergentes -->
+    <script>
+      $(document).ready(function() {
+        $("#login-modal-container").load("loginModal.html");
+        $("#register-modal-container").load("registerModal.html");
+      });
+    </script>
 
-    <!-- Scripts de Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

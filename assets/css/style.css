@@ -80,6 +80,9 @@ h6 {
   font-size: 10px;
   padding: 0;
   height: 40px;
+  position: sticky;
+  top: 0; 
+  z-index: 1030;
 }
 
 #topbar .contact-info i {
@@ -128,7 +131,7 @@ h6 {
   background: #fff;
   box-shadow: 0px 6px 9px 0px rgba(0, 0, 0, 0.06);
   position: sticky;
-  top: 0;
+  top: 40px;
   z-index: 1000; /* Asegura que el header esté sobre otros elementos */
   background: #fff; /* O el color que prefieras */
 }
@@ -285,16 +288,41 @@ h6 {
   }
 }
 
+#navbar .login-trigger {
+  margin-left: 50px !important;
+}
+
+#navbar .login-trigger,
+#navbar .register-trigger {
+  padding: 8px 15px;
+  background-color: #0c2e8a;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  text-decoration: none; 
+  margin-left: 10px;
+}
+
+#navbar .login-trigger:hover,
+#navbar .register-trigger:hover {
+  background-color: #50d8af; /* Color de fondo al pasar el ratón por encima */
+  color: white; /* Podría ser innecesario si el color del texto no cambia */
+}
+
 /**
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
+  position: absolute;
+  top: 30px;
+  right: 100px;
   color: #0c2e8a;
   font-size: 28px;
   cursor: pointer;
   line-height: 0;
-  transition: 0.5s;
+  transition: 0.5;
   display: none !important;
+  z-index: 2001;
 }
 
 @media (max-width: 991px) {
@@ -308,31 +336,38 @@ h6 {
 
   .navbar-mobile ul {
     display: none;
-    position: fixed; /* Cambiado de 'fixed' a 'absolute' */
+    position: fixed;
     top: 0;
   }
 }
 
 
+
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    top: 20px;
+
+  }
+}
+
+
 .navbar-mobile {
+  z-index: 1999;
   position: fixed;
   overflow: hidden;
   display: none;
   top: 0;
-  
   right: 0;
   left: 0;
   bottom: 0;
   background: rgba(8, 30, 91, 0.9);
   transition: 0.3s;
-  z-index: 999;
 }
 
 .navbar-mobile .mobile-nav-toggle {
-  position:relative;
-  top: 100px;
-  right: 15px;
+  position: fixed; /* Cambio de 'relative' a 'fixed' */
 }
+
 
 .navbar-mobile ul {
   display: block;
