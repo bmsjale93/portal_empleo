@@ -14,9 +14,11 @@ function initializeRegistrationFormValidation() {
   const registerFormModal = document.getElementById("registerFormModal");
 
   registerFormModal.addEventListener("submit", function (e) {
-    e.preventDefault(); // Previene el comportamiento por defecto del formulario
     if (!validateRegistrationForm()) {
-      e.preventDefault(); // Prevenir envío si la validación falla
+      e.preventDefault(); // Previene el envío si la validación falla
+    } else {
+      // Si eliges hacer una solicitud AJAX, aquí iría el código
+      // De lo contrario, el formulario se enviará normalmente
     }
   });
 }
@@ -26,21 +28,20 @@ function initializeRegistrationFormValidation() {
  * @return {boolean} Retorna verdadero si todos los campos son válidos, de lo contrario falso.
  */
 function validateRegistrationForm() {
-  // Definición de expresiones regulares para validación
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^[0-9]{7,}$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{7,}$/;
 
-  // Obtención de valores del formulario
-  const name = document.getElementById("registerName").value;
-  const email = document.getElementById("registerEmail").value;
-  const password = document.getElementById("registerPassword").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-  const address = document.getElementById("address").value;
-  const city = document.getElementById("city").value;
-  const country = document.getElementById("country").value;
-  const postalCode = document.getElementById("postalCode").value;
-  const phone = document.getElementById("phone").value;
+    const name = document.getElementById("registerName").value;
+    const email = document.getElementById("registerEmail").value;
+    const password = document.getElementById("registerPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const address = document.getElementById("address").value;
+    const city = document.getElementById("city").value;
+    const country = document.getElementById("country").value;
+    const postalCode = document.getElementById("postalCode").value;
+    const phone = document.getElementById("phone").value;
+    const userType = document.getElementById("userType").value;
 
   // Validación de campos
   let errorMessage = "";
@@ -199,3 +200,36 @@ function updateProgressBar(step) {
     .attr("aria-valuenow", percentage)
     .text(`Paso ${step} de 3`);
 }
+
+/********************************************************************************
+ * ENVIO DE FORMULARIO DE REGISTRO
+ ********************************************************************************/
+
+document.addEventListener("DOMContentLoaded", function () {
+  const registerForm = document.getElementById("registerFormModal");
+
+  registerForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevenir el envío normal del formulario
+
+    // Validar el formulario antes de enviar
+    if (validateRegistrationForm()) {
+      const formData = new FormData(registerForm);
+
+      fetch('register_user.php', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => response.text())
+      .then(data => {
+        alert(data);
+        if (data.includes("exitosamente")) {
+          $('#registerModal').modal('hide');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert("Ocurrió un error al procesar tu registro. Intenta de nuevo.");
+      });
+    }
+  });
+});
