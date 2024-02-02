@@ -243,13 +243,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 $(document).ready(function () {
-  // Función para ir al paso indicado
   window.goToStep = function (step) {
     // Ocultar todos los pasos
     $("#step1, #step2, #step3").hide();
     // Mostrar el paso actual
     $("#step" + step).show();
+    // Actualizar la barra de progreso
+    updateProgressBar(step);
   };
+
+  function updateProgressBar(step) {
+    var percentage = step === 1 ? 33 : step === 2 ? 66 : 100;
+    var progressBar = $("#progressBar");
+    progressBar
+      .css("width", percentage + "%")
+      .attr("aria-valuenow", percentage);
+    progressBar.text("Paso " + step + " de 3");
+  }
 
   // Validar paso antes de avanzar
   function validateStep(step) {
@@ -323,6 +333,10 @@ $(document).ready(function () {
   });
 });
 
+// Asegúrate de llamar a goToStep(1) al inicio para configurar la vista inicial correctamente
+$(document).ready(function() {
+    goToStep(1); // Inicializar en el paso 1
+});
 
 
 document.addEventListener("DOMContentLoaded", function () {

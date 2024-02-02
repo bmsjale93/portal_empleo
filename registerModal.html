@@ -8,6 +8,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <!-- Barra de progreso -->
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: 0%;" id="progressBar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">Paso 1 de 3</div>
+            </div>
             <form id="registerFormModal">
                 <div class="modal-body">
                     <!-- Paso 1: Información Básica -->
@@ -48,7 +52,7 @@
                             <label for="country">País</label>
                             <input type="text" class="form-control" id="country" placeholder="Ingrese su país" required>
                         </div>
-                        <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Anterior</button>
+                        <button type="button" class="btn btn-primary" onclick="goToStep(1)">Anterior</button>
                         <button type="button" class="btn btn-primary" onclick="goToStep(3)">Siguiente</button>
                     </div>
                     <!-- Paso 3: Tipo de Usuario -->

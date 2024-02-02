@@ -1,10 +1,5 @@
 <?php
 session_start();
-if (isset($_SESSION['nombreUsuario'])) {
-  echo "Sesión iniciada: " . $_SESSION['nombreUsuario'];
-} else {
-  echo "No hay sesión iniciada.";
-}
 ?>
 
 <!DOCTYPE html>
