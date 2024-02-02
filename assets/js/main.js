@@ -1,4 +1,39 @@
-// Slider para Clientes
+/********************************************************************************
+ * SLIDERS PARA LA WEB
+ *******************************************************************************/
+
+/**
+ * Inicializa el slider para la sección Hero.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  var heroSwiper = new Swiper(".hero-slider", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
+    speed: 1000,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false, // Continuar autoplay después de la interacción del usuario
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+});
+
+/**
+ * Inicializa el slider para la sección de Clientes.
+ * Configura responsive breakpoints para adaptarse a diferentes anchos de pantalla.
+ */
 document.addEventListener("DOMContentLoaded", function () {
   var clientsSwiper = new Swiper(".clients-slider", {
     slidesPerView: 4,
@@ -8,19 +43,15 @@ document.addEventListener("DOMContentLoaded", function () {
       el: ".swiper-pagination",
       clickable: true,
     },
-    // Responsive breakpoints
     breakpoints: {
-      // when window width is <= 480px
       480: {
         slidesPerView: 1,
         spaceBetween: 10,
       },
-      // when window width is <= 768px
       768: {
         slidesPerView: 2,
         spaceBetween: 20,
       },
-      // when window width is <= 1024px
       1024: {
         slidesPerView: 3,
         spaceBetween: 30,
@@ -29,10 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-// Slider para Testimonios
+/**
+ * Inicializa el slider para la sección de Testimonios.
+ */
 document.addEventListener("DOMContentLoaded", function () {
-  var mySwiper = new Swiper(".testimonials-slider", {
+  var testimonialsSwiper = new Swiper(".testimonials-slider", {
     slidesPerView: 4,
     spaceBetween: 30,
     loop: true,
@@ -40,19 +72,15 @@ document.addEventListener("DOMContentLoaded", function () {
       el: ".swiper-pagination",
       clickable: true,
     },
-    // Responsive breakpoints
     breakpoints: {
-      // when window width is <= 480px
       480: {
         slidesPerView: 1,
         spaceBetween: 10,
       },
-      // when window width is <= 768px
       768: {
         slidesPerView: 2,
         spaceBetween: 20,
       },
-      // when window width is <= 1024px
       1024: {
         slidesPerView: 3,
         spaceBetween: 30,
@@ -60,6 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 });
+
+
+/********************************************************************************
+* FUNCIÓN PARA NOTIFICACIONES
+ *******************************************************************************/
 
 // Función para mostrar una notificación
 function showNotification(message, type = "success") {
@@ -75,83 +108,89 @@ function showNotification(message, type = "success") {
   }, 3000);
 }
 
-// Espera a que se cargue completamente el contenido del DOM
+
+/********************************************************************************
+* FUNCIÓN PARA MOSTRAR/FILTRAR OFERTAS
+ *******************************************************************************/
+
 document.addEventListener("DOMContentLoaded", function () {
-  // Obtiene los elementos del formulario y del contenedor de ofertas
-  const filterForm = document.getElementById("filterForm");
-  const offersContainer = document.getElementById("offersContainer");
-
-  // Agrega un evento de 'submit' al formulario de filtrado
-  filterForm.addEventListener("submit", function (e) {
-    e.preventDefault(); // Previene el comportamiento por defecto del formulario
-    const keyword = document.getElementById("searchKeyword").value;
-    const category = document.getElementById("categorySelect").value;
-
-    filterOffers(keyword, category); // Llama a la función para filtrar ofertas
-  });
-
-  // Función para filtrar las ofertas basándose en la palabra clave y la categoría
-  function filterOffers(keyword, category) {
-    let filteredOffers = sampleOffers; // Comienza con todas las ofertas
-
-    // Filtra por categoría si es específica
-    if (category !== "all") {
-      filteredOffers = filteredOffers.filter(
-        (offer) => offer.category === category
-      );
-    }
-
-    // Filtra por palabra clave si se proporciona una
-    if (keyword) {
-      filteredOffers = filteredOffers.filter(
-        (offer) =>
-          offer.title.toLowerCase().includes(keyword.toLowerCase()) ||
-          offer.description.toLowerCase().includes(keyword.toLowerCase())
-      );
-    }
-
-    displayOffers(filteredOffers); // Muestra las ofertas filtradas
-  }
-
-  // Función para mostrar las ofertas en el HTML
-  function displayOffers(offers) {
-    offersContainer.innerHTML = ""; // Limpia el contenedor actual
-
-    // Itera sobre cada oferta y la añade al contenedor
-    offers.forEach((offer) => {
-      const offerElement = document.createElement("div");
-      offerElement.className = "offer";
-      offerElement.innerHTML = `
-                <h3>${offer.title}</h3>
-                <p>${offer.description}</p>
-            `;
-      offersContainer.appendChild(offerElement);
-    });
-  }
-
-  // Datos de muestra para las ofertas de trabajo
-  const sampleOffers = [
-    {
-      title: "Desarrollador Frontend",
-      category: "tecnologia",
-      description: "Trabajo de desarrollo frontend usando React.",
-    },
-    {
-      title: "Marketing Digital",
-      category: "marketing",
-      description: "Especialista en SEO y marketing en redes sociales.",
-    },
-    {
-      title: "Analista de Datos",
-      category: "tecnologia",
-      description: "Análisis de grandes volúmenes de datos.",
-    },
-    // ...más ofertas...
-  ];
-
-  // Carga inicial de todas las ofertas
-  filterOffers("", "all");
+    // Inicialización de elementos del DOM
+    initFormAndDisplayOffers();
 });
+
+function initFormAndDisplayOffers() {
+    const filterForm = document.getElementById("filterForm");
+    const offersContainer = document.getElementById("offersContainer");
+
+    // Manejo del evento submit del formulario
+    filterForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevenir el comportamiento por defecto
+        const keyword = document.getElementById("searchKeyword").value;
+        const category = document.getElementById("categorySelect").value;
+        filterAndDisplayOffers(keyword, category, offersContainer);
+    });
+
+    // Datos de muestra para las ofertas de trabajo
+    const sampleOffers = [
+        { title: "Desarrollador Frontend", category: "tecnologia", description: "Trabajo de desarrollo frontend usando React." },
+        { title: "Marketing Digital", category: "marketing", description: "Especialista en SEO y marketing en redes sociales." },
+        { title: "Analista de Datos", category: "tecnologia", description: "Análisis de grandes volúmenes de datos." },
+        // Añadir más ofertas según sea necesario
+    ];
+
+    // Mostrar todas las ofertas inicialmente
+    filterAndDisplayOffers("", "all", offersContainer, sampleOffers);
+}
+
+/**
+ * Filtra y muestra las ofertas basándose en la palabra clave y la categoría seleccionada.
+ * @param {string} keyword Palabra clave para la búsqueda.
+ * @param {string} category Categoría seleccionada para filtrar.
+ * @param {HTMLElement} container Elemento contenedor donde se mostrarán las ofertas.
+ * @param {Array} offers Lista de ofertas para filtrar y mostrar.
+ */
+function filterAndDisplayOffers(keyword, category, container, offers) {
+    let filteredOffers = filterOffers(keyword, category, offers);
+    displayOffers(filteredOffers, container);
+}
+
+/**
+ * Filtra las ofertas por palabra clave y categoría.
+ * @param {string} keyword Palabra clave para la búsqueda.
+ * @param {string} category Categoría para filtrar.
+ * @param {Array} offers Lista de ofertas.
+ * @returns {Array} Ofertas filtradas.
+ */
+function filterOffers(keyword, category, offers) {
+    return offers.filter(offer => {
+        const matchesKeyword = keyword ? offer.title.toLowerCase().includes(keyword.toLowerCase()) || 
+        offer.description.toLowerCase().includes(keyword.toLowerCase()) : true;
+        
+        const matchesCategory = category !== "all" ? offer.category === category : true;
+        return matchesKeyword && matchesCategory;
+    });
+}
+
+/**
+ * Muestra las ofertas filtradas en el HTML.
+ * @param {Array} offers Ofertas para mostrar.
+ * @param {HTMLElement} container Elemento contenedor para las ofertas.
+ */
+function displayOffers(offers, container) {
+    container.innerHTML = ""; // Limpia el contenedor de ofertas
+
+    offers.forEach(offer => {
+        const offerElement = document.createElement("div");
+        offerElement.className = "offer";
+        offerElement.innerHTML = `<h3>${offer.title}</h3><p>${offer.description}</p>`;
+        container.appendChild(offerElement);
+    });
+}
+
+
+/********************************************************************************
+* VALIDAD FORMULARIO DE LOGIN
+ *******************************************************************************/
 
 document.addEventListener("DOMContentLoaded", function () {
   // Validar formulario de Login
@@ -176,263 +215,327 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+})
 
-  // Validación del formulario de registro
-  const registerFormModal = document.getElementById("registerFormModal");
 
-    registerFormModal.addEventListener("submit", function(e) {
-        const name = document.getElementById("registerName").value;
-        const email = document.getElementById("registerEmail").value;
-        const password = document.getElementById("registerPassword").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
-        const address = document.getElementById("address").value;
-        const city = document.getElementById("city").value;
-        const country = document.getElementById("country").value;
-        const postalCode = document.getElementById("postalCode").value;
-        const phone = document.getElementById("phone").value;
+/********************************************************************************
+ * FORMULARIO DE REGISTRO
+ ********************************************************************************/
 
-        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const phoneRegex = /^[0-9]{7,}$/; // Ajusta según el formato deseado
-
-        let valid = true;
-        let errorMessage = "";
-
-        if (!name) {
-            errorMessage += "Por favor, ingrese su nombre.\n";
-            valid = false;
-        }
-        if (!email || !emailRegex.test(email)) {
-            errorMessage += "Por favor, ingrese un correo electrónico válido.\n";
-            valid = false;
-        }
-        if (!password || !passwordRegex.test(password)) {
-            errorMessage += "La contraseña debe tener al menos 8 caracteres, incluyendo un número, una letra mayúscula y una letra minúscula.\n";
-            valid = false;
-        }
-        if (password !== confirmPassword) {
-            errorMessage += "Las contraseñas no coinciden.\n";
-            valid = false;
-        }
-        if (!address) {
-            errorMessage += "Por favor, ingrese su dirección.\n";
-            valid = false;
-        }
-        if (!city) {
-            errorMessage += "Por favor, ingrese su ciudad.\n";
-            valid = false;
-        }
-        if (!country) {
-            errorMessage += "Por favor, ingrese su país.\n";
-            valid = false;
-        }
-        if (!postalCode) {
-            errorMessage += "Por favor, ingrese su código postal.\n";
-            valid = false;
-        }
-        if (!phone || !phoneRegex.test(phone)) {
-            errorMessage += "Por favor, ingrese un número de teléfono válido.\n";
-            valid = false;
-        }
-
-        if (!valid) {
-            alert(errorMessage);
-            e.preventDefault();
-        }
-    });
+/**
+ * Espera a que se cargue completamente el contenido del DOM y luego inicializa
+ * la validación del formulario de registro y la navegación por pasos.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  initializeRegistrationFormValidation();
 });
 
-$(document).ready(function () {
-  window.goToStep = function (step) {
-    // Ocultar todos los pasos
-    $("#step1, #step2, #step3").hide();
-    // Mostrar el paso actual
-    $("#step" + step).show();
-    // Actualizar la barra de progreso
-    updateProgressBar(step);
-  };
+function initializeRegistrationFormValidation() {
+  const registerFormModal = document.getElementById("registerFormModal");
 
-  function updateProgressBar(step) {
-    var percentage = step === 1 ? 33 : step === 2 ? 66 : 100;
-    var progressBar = $("#progressBar");
-    progressBar
-      .css("width", percentage + "%")
-      .attr("aria-valuenow", percentage);
-    progressBar.text("Paso " + step + " de 3");
-  }
-
-  // Validar paso antes de avanzar
-  function validateStep(step) {
-    let isValid = true; // asumir que el paso es válido inicialmente
-    switch (step) {
-      case 1:
-        // Validar paso 1: Información básica
-        if (
-          $("#registerName").val().trim() === "" ||
-          $("#registerEmail").val().trim() === "" ||
-          $("#registerPassword").val().trim() === "" ||
-          $("#confirmPassword").val().trim() === "" ||
-          $("#phone").val().trim() === "" ||
-          $("#registerPassword").val() !== $("#confirmPassword").val()
-        ) {
-          isValid = false;
-          alert("Por favor, complete todos los campos correctamente.");
-        }
-        break;
-      case 2:
-        // Validar paso 2: Dirección
-        if (
-          $("#address").val().trim() === "" ||
-          $("#city").val().trim() === "" ||
-          $("#country").val().trim() === ""
-        ) {
-          isValid = false;
-          alert("Por favor, complete todos los campos de dirección.");
-        }
-        break;
-      case 3:
-        // Validar paso 3: Tipo de usuario
-        if ($("#userType").val().trim() === "") {
-          isValid = false;
-          alert("Por favor, seleccione un tipo de usuario.");
-        }
-        break;
+  registerFormModal.addEventListener("submit", function (e) {
+    e.preventDefault(); // Previene el comportamiento por defecto del formulario
+    if (!validateRegistrationForm()) {
+      e.preventDefault(); // Prevenir envío si la validación falla
     }
-    return isValid;
-  }
+  });
+}
 
+/**
+ * Valida todos los campos del formulario de registro y muestra mensajes de error si es necesario.
+ * @return {boolean} Retorna verdadero si todos los campos son válidos, de lo contrario falso.
+ */
+function validateRegistrationForm() {
+  // Definición de expresiones regulares para validación
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^[0-9]{7,}$/;
+
+  // Obtención de valores del formulario
+  const name = document.getElementById("registerName").value;
+  const email = document.getElementById("registerEmail").value;
+  const password = document.getElementById("registerPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const address = document.getElementById("address").value;
+  const city = document.getElementById("city").value;
+  const country = document.getElementById("country").value;
+  const postalCode = document.getElementById("postalCode").value;
+  const phone = document.getElementById("phone").value;
+
+  // Validación de campos
+  let errorMessage = "";
+  if (!name) errorMessage += "Por favor, ingrese su nombre.\n";
+  if (!email || !emailRegex.test(email))
+    errorMessage += "Por favor, ingrese un correo electrónico válido.\n";
+  if (!password || !passwordRegex.test(password))
+    errorMessage +=
+      "La contraseña debe tener al menos 8 caracteres, incluyendo un número, una letra mayúscula y una letra minúscula.\n";
+  if (password !== confirmPassword)
+    errorMessage += "Las contraseñas no coinciden.\n";
+  if (!address) errorMessage += "Por favor, ingrese su dirección.\n";
+  if (!city) errorMessage += "Por favor, ingrese su ciudad.\n";
+  if (!country) errorMessage += "Por favor, ingrese su país.\n";
+  if (!postalCode) errorMessage += "Por favor, ingrese su código postal.\n";
+  if (!phone || !phoneRegex.test(phone))
+    errorMessage += "Por favor, ingrese un número de teléfono válido.\n";
+
+  if (errorMessage) {
+    alert(errorMessage);
+    return false;
+  }
+  return true;
+}
+
+/********************************************************************************
+ * NAVEGACIÓN POR PASOS EN EL FORMULARIO DE REGISTRO
+ ********************************************************************************/
+$(document).ready(function () {
+  initializeStepNavigation();
+  goToStep(1); // Inicializar en el paso 1
+});
+
+function initializeStepNavigation() {
   // Controlar la navegación entre pasos
   $("#registerFormModal")
     .find("button")
     .click(function (e) {
-      let currentStep = $(this)
-        .closest('div[id^="step"]')
-        .attr("id")
-        .replace("step", "");
-      let targetStep =
-        $(this).text() === "Siguiente"
-          ? parseInt(currentStep) + 1
-          : parseInt(currentStep) - 1;
-
-      // Validar el paso actual antes de avanzar
-      if (validateStep(parseInt(currentStep))) {
-        goToStep(targetStep);
-      } else {
-        e.preventDefault(); // Prevenir la acción por defecto si la validación falla
-      }
+      navigateSteps(this, e);
     });
+}
 
-  // Enviar formulario
-  $("#registerFormModal").submit(function (e) {
-    // Asegurarse de que el último paso es válido antes de enviar
-    if (!validateStep(3)) {
-      e.preventDefault(); // Prevenir el envío si la validación falla
-      return false;
-    }
-    // Aquí se puede agregar el código para enviar el formulario, como una llamada AJAX.
-  });
-});
+function navigateSteps(element, event) {
+  const currentStep = $(element)
+    .closest('div[id^="step"]')
+    .attr("id")
+    .replace("step", "");
+  const isNext = $(element).text().includes("Siguiente");
+  const targetStep = isNext
+    ? parseInt(currentStep) + 1
+    : parseInt(currentStep) - 1;
 
-// Asegúrate de llamar a goToStep(1) al inicio para configurar la vista inicial correctamente
-$(document).ready(function() {
-    goToStep(1); // Inicializar en el paso 1
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Seleccionar todos los elementos que activan la ventana modal de inicio de sesión
-  const loginTriggers = document.querySelectorAll(".login-trigger");
-
-  // Añadir un evento de clic a cada uno para el login
-  loginTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", function (event) {
-      event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
-      $("#loginModal").modal("show"); // Mostrar la ventana modal de inicio de sesión
-    });
-  });
-
-  // Seleccionar todos los elementos que activan la ventana modal de registro
-  const registerTriggers = document.querySelectorAll(".register-trigger");
-
-  // Añadir un evento de clic a cada uno para el registro
-  registerTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", function (event) {
-      event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
-      $("#registerModal").modal("show"); // Mostrar la ventana modal de registro
-    });
-  });
-});
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const applicationStatusElements = document.querySelectorAll(
-    ".application-status"
-  );
-
-  applicationStatusElements.forEach((element) => {
-    // Suponiendo que el ID de la aplicación está en un atributo data
-    const applicationId = element.getAttribute("data-application-id");
-
-    // Simula una llamada al servidor para obtener el estado actual
-    // En un caso real, esto sería una solicitud AJAX
-    fetchStatus(applicationId, (status) => {
-      element.textContent = `Estado: ${status}`;
-    });
-  });
-
-  function fetchStatus(applicationId, callback) {
-    // Simulación de la obtención del estado de la aplicación
-    // En un caso real, se enviaría una solicitud al servidor
-    setTimeout(() => {
-      const simulatedStatus = "En revisión"; // Esto sería el estado obtenido del servidor
-      callback(simulatedStatus);
-    }, 1000);
+  // Validar el paso actual antes de avanzar o retroceder
+  if (validateStep(parseInt(currentStep))) {
+    goToStep(targetStep);
+  } else {
+    event.preventDefault(); // Prevenir la acción por defecto si la validación falla
   }
-});
+}
+
+/**
+ * Valida el paso actual del formulario antes de avanzar.
+ * Se asume que cada "step" contiene campos específicos que deben ser validados.
+ * @param {number} step El paso actual que se va a validar.
+ * @return {boolean} Retorna verdadero si el paso es válido, de lo contrario falso.
+ */
+function validateStep(step) {
+    let isValid = true; // Inicialmente asumimos que el paso es válido
+    let errorMessage = ""; // Mensaje de error acumulativo
+
+    switch (step) {
+        case 1:
+            // Validación para el Paso 1: Información Básica
+            if ($("#registerName").val().trim() === "") {
+                errorMessage += "Por favor, ingrese su nombre.\n";
+                isValid = false;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("#registerEmail").val().trim())) {
+                errorMessage += "Por favor, ingrese un correo electrónico válido.\n";
+                isValid = false;
+            }
+            if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test($("#registerPassword").val())) {
+                errorMessage += "La contraseña debe tener al menos 8 caracteres, incluyendo un número, una letra mayúscula y una letra minúscula.\n";
+                isValid = false;
+            }
+            if ($("#registerPassword").val() !== $("#confirmPassword").val()) {
+                errorMessage += "Las contraseñas no coinciden.\n";
+                isValid = false;
+            }
+            break;
+        case 2:
+            // Validación para el Paso 2: Dirección
+            if ($("#address").val().trim() === "") {
+                errorMessage += "Por favor, ingrese su dirección.\n";
+                isValid = false;
+            }
+            if ($("#city").val().trim() === "") {
+                errorMessage += "Por favor, ingrese su ciudad.\n";
+                isValid = false;
+            }
+            if ($("#country").val().trim() === "") {
+                errorMessage += "Por favor, ingrese su país.\n";
+                isValid = false;
+            }
+            break;
+        case 3:
+            // Validación para el Paso 3: Información Adicional
+            if ($("#postalCode").val().trim() === "") {
+                errorMessage += "Por favor, ingrese su código postal.\n";
+                isValid = false;
+            }
+            if (!/^[0-9]{7,}$/.test($("#phone").val().trim())) {
+                errorMessage += "Por favor, ingrese un número de teléfono válido.\n";
+                isValid = false;
+            }
+            if ($("#userType").val().trim() === "") {
+                errorMessage += "Por favor, seleccione un tipo de usuario.\n";
+                isValid = false;
+            }
+            break;
+        default:
+            console.error("Paso no reconocido: ", step);
+            isValid = false;
+    }
+
+    // Mostrar el mensaje de error si el paso no es válido
+    if (!isValid) {
+        alert(errorMessage);
+    }
+
+    return isValid;
+}
+
+
+/**
+ * Actualiza la vista para mostrar el paso indicado del formulario.
+ * @param {number} step El número del paso a mostrar.
+ */
+function goToStep(step) {
+  // Ocultar todos los pasos
+  $("#step1, #step2, #step3").hide();
+  // Mostrar el paso actual
+  $("#step" + step).show();
+  // Actualizar la barra de progreso
+  updateProgressBar(step);
+}
+
+/**
+ * Actualiza la barra de progreso del formulario de registro según el paso actual.
+ * @param {number} step El paso actual del formulario.
+ */
+function updateProgressBar(step) {
+  const percentage = step === 1 ? 33 : step === 2 ? 66 : 100;
+  $("#progressBar")
+    .css("width", percentage + "%")
+    .attr("aria-valuenow", percentage)
+    .text(`Paso ${step} de 3`);
+}
+
+
+/********************************************************************************
+ * VENTANAS EMERGENTES PARA LOGIN Y REGISTRO
+ ********************************************************************************/
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Selecciona el botón Close de la ventana modal
-  const closeButton = document.getElementById("closeModalButton");
+  setupModalTriggers();
+  setupModalCloseButton();
+});
 
-  // Asegúrate de que el botón existe
+function setupModalTriggers() {
+  // Configura los disparadores para el modal de login
+  document.querySelectorAll(".login-trigger").forEach(trigger => {
+    trigger.addEventListener("click", event => {
+      event.preventDefault();
+      $("#loginModal").modal("show");
+    });
+  });
+
+  // Configura los disparadores para el modal de registro
+  document.querySelectorAll(".register-trigger").forEach(trigger => {
+    trigger.addEventListener("click", event => {
+      event.preventDefault();
+      $("#registerModal").modal("show");
+    });
+  });
+}
+
+function setupModalCloseButton() {
+  // Selecciona el botón Close de la ventana modal y cierra la ventana modal
+  const closeButton = document.getElementById("closeModalButton");
   if (closeButton) {
-    closeButton.addEventListener("click", function () {
-      // Cierra la ventana modal
+    closeButton.addEventListener("click", () => {
       $("#loginModal").modal("hide");
     });
   }
-});
+}
+
+
+/********************************************************************************
+ * ESTADO DE LA APLICACIÓN
+ ********************************************************************************/
 
 document.addEventListener("DOMContentLoaded", function () {
-  var navToggle = document.querySelector(".mobile-nav-toggle");
-  var navbarMobile = document.querySelector(".navbar-mobile");
-  var navbar = document.querySelector(".navbar");
+  updateApplicationStatuses();
+});
 
-  // Función para cambiar la visibilidad del menú
+/**
+ * Actualiza los estados de las aplicaciones en la página.
+ */
+function updateApplicationStatuses() {
+  const applicationStatusElements = document.querySelectorAll(".application-status");
+
+  applicationStatusElements.forEach(element => {
+    const applicationId = element.getAttribute("data-application-id");
+    fetchStatus(applicationId, status => {
+      element.textContent = `Estado: ${status}`;
+    });
+  });
+}
+
+/**
+ * Simula la obtención del estado de una aplicación desde el servidor.
+ * @param {string} applicationId El ID de la aplicación cuyo estado se está consultando.
+ * @param {Function} callback Función de callback que maneja el estado obtenido.
+ */
+function fetchStatus(applicationId, callback) {
+  // Simulación de una solicitud AJAX para obtener el estado de la aplicación
+  setTimeout(() => {
+    const simulatedStatus = "En revisión"; // Simulación del estado obtenido del servidor
+    callback(simulatedStatus);
+  }, 1000);
+}
+
+/********************************************************************************
+ * MENU RESPONSIVE
+ ********************************************************************************/
+
+document.addEventListener("DOMContentLoaded", function () {
+  setupMobileNavigation();
+});
+
+/**
+ * Configura la navegación móvil, incluyendo el toggle del menú y ajustes de visibilidad basados en el tamaño de la ventana.
+ */
+function setupMobileNavigation() {
+  const navToggle = document.querySelector(".mobile-nav-toggle");
+  const navbarMobile = document.querySelector(".navbar-mobile");
+  const navbar = document.querySelector(".navbar");
+
+  /**
+   * Cambia la visibilidad del menú móvil y ajusta las clases del botón de toggle.
+   */
   function toggleMenu() {
-    var isVisible = navbarMobile.style.display === "block";
+    const isVisible = navbarMobile.style.display === "block";
     navbarMobile.style.display = isVisible ? "none" : "block";
-
-    // Cambiar clases del botón
-    if (isVisible) {
-      navToggle.classList.remove("fa-times");
-      navToggle.classList.add("fa-bars");
-    } else {
-      navToggle.classList.remove("fa-bars");
-      navToggle.classList.add("fa-times");
-    }
+    navToggle.classList.toggle("fa-times", !isVisible);
+    navToggle.classList.toggle("fa-bars", isVisible);
   }
 
   navToggle.addEventListener("click", toggleMenu);
 
-  // Ajustar visibilidad del menú al cambiar el tamaño de la ventana
-  window.addEventListener("resize", function () {
+  /**
+   * Ajusta la visibilidad del menú móvil y del menú principal en función del tamaño de la ventana.
+   */
+  function adjustMenuVisibility() {
     if (window.innerWidth > 991) {
       navbarMobile.style.display = "none";
       navbar.style.display = "block";
     } else {
       navbar.style.display = "none";
     }
-  });
-});
+  }
+
+  window.addEventListener("resize", adjustMenuVisibility);
+
+  // Asegura que el menú se ajuste correctamente al cargar la página.
+  adjustMenuVisibility();
+}

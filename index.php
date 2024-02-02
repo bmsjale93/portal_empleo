@@ -32,8 +32,6 @@ session_start();
   <!-- AJAX -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-
 </head>
 
 <body>
@@ -58,7 +56,6 @@ session_start();
     </div>
   </section>
   <!-- End Top Bar -->
-
 
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
@@ -96,7 +93,7 @@ session_start();
     </div>
   </header>
 
-  <!-- ======= hero Section ======= -->
+  <!-- ======= Hero Section ======= -->
   <section id="hero">
 
     <div class="hero-content">
@@ -297,34 +294,106 @@ session_start();
       </div>
     </section><!-- End Testimonials Section -->
 
-    <!-- Footer -->
-    <footer class="py-4 bg-dark text-white-50">
-      <div class="container text-center">
-        <small>Portal de Búsqueda de Trabajo © 2024</small>
+    <!-- ======= Contact Section ======= -->
+    <section id="contact">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Contáctanos</h2>
+          <p>¿Tienes alguna duda? Utiliza cualquiera de los medios disponibles para dejarnos tus dudas y poder resolverlas.</p>
+        </div>
+
+        <div class="row contact-info">
+
+          <div class="col-md-4">
+            <div class="contact-address">
+              <i class="bi bi-geo-alt"></i>
+              <h3>Dirección</h3>
+              <address>Calle Falsa, 123, Desconocido, España</address>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-phone">
+              <i class="bi bi-phone"></i>
+              <h3>Teléfono</h3>
+              <p><a href="tel:+34696696696">+34 696 696 696</a></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-email">
+              <i class="bi bi-envelope"></i>
+              <h3>Email</h3>
+              <p><a href="mailto:info@example.com">info@worknow.com</a></p>
+            </div>
+          </div>
+        </div>
       </div>
-    </footer>
+      <div class="container mb-4">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.0834631413472!2d-4.460735323273611!3d40.18495597147776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4035b57551b6f3%3A0x84be095154d712f6!2sC.%20Falsa%2C%2045908%20Aldea%20en%20Cabo%2C%20Toledo!5e0!3m2!1ses!2ses!4v1706879328276!5m2!1ses!2ses" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+      <div class="container">
+        <div class="form">
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Tu Nombre" required>
+              </div>
+              <div class="form-group col-md-6 mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Tu Correo Electrónico" required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" required>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="message" rows="5" placeholder="Déjanos tu mensaje..." required></textarea>
+            </div>
 
-    <!-- Contenedores para las Ventanas Emergentes -->
-    <div id="login-modal-container"></div>
-    <div id="register-modal-container"></div>
+            <div class="my-3">
+              <div class="loading">Cargando...</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Tu mensaje ha sido enviado. ¡Gracias!</div>
+            </div>
 
-    <!-- Carga Ventanas Emergentes -->
-    <script>
-      $(document).ready(function() {
-        $("#login-modal-container").load("loginModal.html");
-        $("#register-modal-container").load("registerModal.html");
-      });
-    </script>
+            <div class="text-center"><button type="submit">Enviar mensaje</button></div>
+          </form>
+        </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+      </div>
+    </section><!-- End Contact Section -->
 
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+  </main><!-- End #main -->
+
+  <!-- Footer -->
+  <footer class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Portal de Búsqueda de Trabajo © 2024</small>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Contenedores para las Ventanas Emergentes -->
+  <div id="login-modal-container"></div>
+  <div id="register-modal-container"></div>
+
+  <!-- Carga Ventanas Emergentes -->
+  <script>
+    $(document).ready(function() {
+      $("#login-modal-container").load("loginModal.html");
+      $("#register-modal-container").load("registerModal.html");
+    });
+  </script>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 
 </body>
 
