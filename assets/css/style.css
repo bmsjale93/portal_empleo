@@ -372,6 +372,28 @@ h6 {
   text-align: center;
 }
 
+#hero-btn {
+  width: 100%;
+  height: 10vh;
+  position: relative;
+  background-size: cover;
+  margin-top: 50px;
+}
+
+#hero-btn .hero-content-btn {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+
 #hero .hero-content h2 {
   color: #0c2e8a;
   margin-bottom: 30px;
@@ -393,7 +415,8 @@ h6 {
 }
 
 #hero .hero-content .btn-get-started,
-#hero .hero-content .btn-projects {
+#hero .hero-content .btn-projects,
+#hero-btn .hero-content-btn .btn-projects{
   font-family: "Raleway", sans-serif;
   font-size: 15px;
   font-weight: bold;
@@ -416,12 +439,14 @@ h6 {
   color: #0c2e8a;
 }
 
-#hero .hero-content .btn-projects {
+#hero .hero-content .btn-projects,
+#hero-btn .hero-content-btn .btn-projects {
   background: #50d8af;
   border: 2px solid #50d8af;
 }
 
-#hero .hero-content .btn-projects:hover {
+#hero .hero-content .btn-projects:hover,
+#hero-btn .hero-content-btn .btn-projects:hover {
   background: none;
   color: #50d8af;
 }
