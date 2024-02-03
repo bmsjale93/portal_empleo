@@ -193,32 +193,41 @@ function displayOffers(offers, container) {
  *******************************************************************************/
 
 function updateUIAfterLogin(userName) {
-  $(".login-trigger, .register-trigger").closest("li").hide(); // Oculta los botones de inicio de sesión y registro
-  $("#navbar ul").append(`<li><a href="#">Bienvenido, ${userName}</a></li>`); // Agrega el mensaje de bienvenida
-  $("#loginModal").modal("hide"); // Oculta el modal de inicio de sesión
-  // Opcional: puedes recargar la página para reflejar los cambios de estado de sesión más claramente
-  // window.location.reload();
+  // Ocultar botones de iniciar sesión y registrarse
+  $(".login-trigger").parent().hide();
+  $(".register-trigger").parent().hide();
+
+  // Añadir mensaje de bienvenida
+  var welcomeMessage = `<li><a href="#">Bienvenido, ${userName}</a></li>`;
+  $("#navbar ul").append(welcomeMessage);
+
+  // Opción adicional: cerrar modal con JavaScript nativo si jQuery no funciona
+  var loginModal = document.getElementById("loginModal");
+  $(loginModal).modal("hide"); // Intenta cerrar el modal con jQuery
+  if (loginModal) loginModal.style.display = "none"; // Fallback con JavaScript puro
+
+  // Asegúrate de que el modal se cierra correctamente
+  $("body").removeClass("modal-open");
+  $(".modal-backdrop").remove();
 }
 
-    
-$(document).ready(function () {
-  $("#loginFormModal").submit(function (e) {
-    e.preventDefault(); // Prevenir el envío normal del formulario
 
-    const email = $("#emailModal").val();
-    const password = $("#passwordModal").val();
+$(document).ready(function () {
+  $("#loginButton").click(function (e) {
+    var email = $("#emailModal").val();
+    var password = $("#passwordModal").val();
 
     $.ajax({
-      type: "POST", // Asegurarse de que estamos haciendo una solicitud POST
-      url: "database/login_user.php", // Asegúrate de que la ruta al script PHP es correcta.
+      type: "POST",
+      url: "login_user.php",
       data: {
         email: email,
         password: password,
       },
       success: function (response) {
-        var data = JSON.parse(response); // Parsea la respuesta JSON
+        var data = JSON.parse(response);
         if (data.success) {
-          updateUIAfterLogin(data.userName); // Actualiza la interfaz de usuario según sea necesario
+          updateUIAfterLogin(data.userName);
         } else {
           alert("Usuario o contraseña incorrectos");
         }
@@ -229,6 +238,9 @@ $(document).ready(function () {
     });
   });
 });
+
+
+
 
 /********************************************************************************
  * FORMULARIO DE REGISTRO

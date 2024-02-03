@@ -75,7 +75,6 @@ session_start();
             <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
           <?php endif; ?>
         </ul>
-
       </nav>
       <div>
         <!-- Menú (oculto por defecto) -->
@@ -322,8 +321,8 @@ session_start();
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-  <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
 
 </body>
 
