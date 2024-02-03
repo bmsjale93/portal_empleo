@@ -308,21 +308,14 @@ session_start();
   <div id="login-modal-container"></div>
   <div id="register-modal-container"></div>
 
-  <!-- Carga Ventanas Emergentes -->
-  <script>
-    $(document).ready(function() {
-      $("#login-modal-container").load("loginModal.html");
-      $("#register-modal-container").load("registerModal.html");
-    });
-  </script>
-
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-  <script src="assets/js/main.js"></script>
-
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/login_register.js"></script>
+  <script src="assets/js/slider.js"></script>
 
 </body>
 

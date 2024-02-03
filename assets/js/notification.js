@@ -1,6 +1,6 @@
-/***********************************
-* FUNCIÓN PARA NOTIFICACIONES
-***********************************/
+/********************************************************************************
+ * FUNCIÓN PARA NOTIFICACIONES
+ *******************************************************************************/
 
 // Función para mostrar una notificación
 function showNotification(message, type = "success") {
