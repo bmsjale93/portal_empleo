@@ -2,10 +2,7 @@
  * FORMULARIO DE REGISTRO
  ********************************************************************************/
 
-/**
- * Espera a que se cargue completamente el contenido del DOM y luego inicializa
- * la validación del formulario de registro y la navegación por pasos.
- */
+
 document.addEventListener("DOMContentLoaded", function () {
   initializeRegistrationFormValidation();
 });
@@ -15,10 +12,8 @@ function initializeRegistrationFormValidation() {
 
   registerFormModal.addEventListener("submit", function (e) {
     if (!validateRegistrationForm()) {
-      e.preventDefault(); // Previene el envío si la validación falla
+      e.preventDefault();
     } else {
-      // Si eliges hacer una solicitud AJAX, aquí iría el código
-      // De lo contrario, el formulario se enviará normalmente
     }
   });
 }
@@ -70,6 +65,7 @@ function validateRegistrationForm() {
 /********************************************************************************
  * NAVEGACIÓN POR PASOS EN EL FORMULARIO DE REGISTRO
  ********************************************************************************/
+
 $(document).ready(function () {
   initializeStepNavigation();
   goToStep(1); // Inicializar en el paso 1
@@ -207,29 +203,32 @@ function updateProgressBar(step) {
 
 document.addEventListener("DOMContentLoaded", function () {
   const registerForm = document.getElementById("registerFormModal");
-
-  registerForm.addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevenir el envío normal del formulario
-
-    // Validar el formulario antes de enviar
-    if (validateRegistrationForm()) {
-      const formData = new FormData(registerForm);
-
-      fetch('register_user.php', {
-        method: 'POST',
-        body: formData,
-      })
-      .then(response => response.text())
-      .then(data => {
-        alert(data);
-        if (data.includes("exitosamente")) {
-          $('#registerModal').modal('hide');
-        }
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        alert("Ocurrió un error al procesar tu registro. Intenta de nuevo.");
-      });
-    }
-  });
+  registerForm.removeEventListener("submit", handleFormSubmit);
+  registerForm.addEventListener("submit", handleFormSubmit);
 });
+
+function handleFormSubmit(e) {
+  e.preventDefault(); // Prevenir el envío normal del formulario
+  
+  // Lógica de validación y envío del formulario aquí
+  if (validateRegistrationForm()) {
+    const formData = new FormData(registerForm);
+
+    fetch('register_user.php', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        updateUIAfterLogin(data.userName);
+      } else {
+        alert(data.message);
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert("Ocurrió un error al procesar tu registro. Intenta de nuevo.");
+    });
+  }
+}

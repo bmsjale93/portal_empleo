@@ -1,6 +1,5 @@
 <?php
 include 'db.php'; // Conexión a la base de datos
-
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -45,17 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
     }
-    
+
     $sql = "INSERT INTO Usuarios (Nombre, Email, Password, Direccion, Ciudad, Pais, CodigoPostal, Telefono, TipoUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param("sssssssss", $nombre, $email, $passwordHash, $direccion, $ciudad, $pais, $codigoPostal, $telefono, $tipoUsuario);
 
         if ($stmt->execute()) {
-            echo "Usuario registrado exitosamente.";
-            $_SESSION['nombreUsuario'] = $nombre; // Asumiendo que $nombreUsuario es el nombre del usuario registrado
+            echo json_encode(['success' => true, 'message' => 'Usuario registrado exitosamente.', 'userName' => $nombre]);
+            $_SESSION['nombreUsuario'] = $nombre;
         } else {
-            echo "Error al registrar el usuario: " . $stmt->error;
+            echo json_encode(['success' => false, 'message' => 'Error al registrar el usuario.']);
         }
 
         $stmt->close();
@@ -65,6 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn->close();
 } else {
-    header("Location: register_user.php");
+    header('Content-Type: application/json');
     exit;
 }

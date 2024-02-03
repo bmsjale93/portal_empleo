@@ -1,4 +1,4 @@
-<!-- Inicio de sesión Modal -->
+<!-- loginModal.html -->
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -12,11 +12,11 @@
                 <form id="loginFormModal">
                     <div class="form-group">
                         <label for="emailModal">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="emailModal" placeholder="Ingrese su correo">
-                     </div>
+                        <input type="email" class="form-control" id="emailModal" name="email" placeholder="Ingrese su correo" required>
+                    </div>
                     <div class="form-group">
                         <label for="passwordModal">Contraseña</label>
-                        <input type="password" class="form-control" id="passwordModal" placeholder="Contraseña">
+                        <input type="password" class="form-control" id="passwordModal" name="password" placeholder="Contraseña" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Accede Ahora</button>
                 </form>

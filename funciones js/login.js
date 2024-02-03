@@ -1,28 +1,41 @@
 /********************************************************************************
-* VALIDAD FORMULARIO DE LOGIN
+ * VALIDAR FORMULARIO DE LOGIN
  *******************************************************************************/
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Validar formulario de Login
-  const loginForm = document.getElementById("loginForm");
-  if (loginForm) {
-    loginForm.addEventListener("submit", function (e) {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+function updateUIAfterLogin(userName) {
+  $(".login-trigger, .register-trigger").closest("li").hide(); // Oculta los botones de inicio de sesión y registro
+  $("#navbar ul").append(`<li><a href="#">Bienvenido, ${userName}</a></li>`); // Agrega el mensaje de bienvenida
+  $("#loginModal").modal("hide"); // Oculta el modal de inicio de sesión
+  // Opcional: puedes recargar la página para reflejar los cambios de estado de sesión más claramente
+  // window.location.reload();
+}
 
-      let valid = true;
+    
+$(document).ready(function () {
+  $("#loginFormModal").submit(function (e) {
+    e.preventDefault(); // Prevenir el envío normal del formulario
 
-      if (!email) {
-        alert("Por favor, ingrese su correo electrónico.");
-        valid = false;
-      } else if (!password) {
-        alert("Por favor, ingrese su contraseña.");
-        valid = false;
-      }
+    const email = $("#emailModal").val();
+    const password = $("#passwordModal").val();
 
-      if (!valid) {
-        e.preventDefault();
-      }
+    $.ajax({
+      type: "POST", // Asegurarse de que estamos haciendo una solicitud POST
+      url: "database/login_user.php", // Asegúrate de que la ruta al script PHP es correcta.
+      data: {
+        email: email,
+        password: password,
+      },
+      success: function (response) {
+        var data = JSON.parse(response); // Parsea la respuesta JSON
+        if (data.success) {
+          updateUIAfterLogin(data.userName); // Actualiza la interfaz de usuario según sea necesario
+        } else {
+          alert("Usuario o contraseña incorrectos");
+        }
+      },
+      error: function () {
+        alert("Error en la solicitud AJAX.");
+      },
     });
-  }
-})
+  });
+});

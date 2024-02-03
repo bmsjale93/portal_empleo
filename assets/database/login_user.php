@@ -1,21 +1,25 @@
 <?php
 include 'db.php'; // Incluir el archivo de conexión a la base de datos
+session_start();
 
-$email = $_POST['email']; // Obtener el correo electrónico enviado desde el formulario
-$password = $_POST['password']; // Obtener la contraseña enviada desde el formulario
+$email = $_POST['email'];
+$password = $_POST['password'];
 
 // Preparar y ejecutar la consulta SQL
-$sql = "SELECT * FROM Usuarios WHERE Email = ? AND Contraseña = ?"; // Utilizar sentencias preparadas para evitar inyecciones SQL
+$sql = "SELECT * FROM Usuarios WHERE Email = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ss", $email, $password); // 'ss' significa que ambos parámetros son strings
+$stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    // Credenciales correctas, usuario encontrado
-    $user = $result->fetch_assoc();
-    echo "Bienvenido " . $user['Nombre'];
-    // Aquí podrías establecer variables de sesión, redirigir a otra página, etc.
+if ($user = $result->fetch_assoc()) {
+    // Verificar la contraseña
+    if (password_verify($password, $user['Password'])) {
+        $_SESSION['nombreUsuario'] = $user['Nombre'];
+        echo json_encode(['success' => true, 'userName' => $user['Nombre']]);
+    } else {
+        echo json_encode(['success' => false]);
+    }
 } else {
     echo "Usuario o contraseña incorrectos";
 }
