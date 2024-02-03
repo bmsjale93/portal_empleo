@@ -569,12 +569,52 @@ section {
 }
 
 .text-ofertas p,
- .text-ofertas ul{
+ .text-ofertas ul {
   padding-top: 20px;
   font-size: 20px;
   font-family: "Raleway", sans-serif;
 }
 
+.container-ofertas {
+  padding: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-ofertas div {
+  margin-top: 50px;
+}
+
+.container-ofertas div h3{
+  margin-top: 50px;
+  color: #0c2e8a;
+}
+.container-ofertas div p{
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .container-ofertas {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container-ofertas {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-ofertas {
+    width: 1170px;
+  }
+}
+
+/* FilterForm
+--------------------------------*/
+
+#filterForm .searchKeyword {
+  font-size: 50px;
+}
 
 /* About Section
 --------------------------------*/

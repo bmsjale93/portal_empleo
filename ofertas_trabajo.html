@@ -1,131 +1,199 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Ofertas de Trabajo - Portal de Búsqueda de Trabajo</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="src/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portal de Búsqueda de Empleo</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Portal de Trabajo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ofertas de Trabajo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Iniciar Sesión</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Registrarse</a>
-                </li>
-            </ul>
+
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-flex align-items-center">
+        <div class="container d-flex justify-content-between">
+        <div class="contact-info d-flex align-items-center">
+            <i class="fa fa-envelope d-flex align-items-center">
+            <a href="mailto:contact@example.com">contacto@trabajoempleo.com</a>
+            </i>
+            <i class="fa fa-phone d-flex align-items-center ms-4">
+            <span>+34 612 612 612</span>
+            </i>
         </div>
-    </nav>
+        <div class="social-links d-flex align-items-center">
+            <a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        </div>
+    </section>
+     <!-- End Top Bar -->
 
-    <div class="container mt-4">
-        <h1>Ofertas de Trabajo</h1>
-        <p>Explora las últimas ofertas de trabajo y encuentra la que mejor se ajusta a tus habilidades y carrera profesional.</p>
+  <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex justify-content-between">
+            <div id="logo">
+                <h1><a href="index.html">Work<span>Now</span></a></h1>
+            </div>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link active" href="#hero">Inicio</a></li>
+                    <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
+                    <li><a class="nav-link" href="#contact">Contacto</a></li>
+                    <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+                    <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
+                </ul>
+            </nav>
+            <div>
+                <!-- Menú (oculto por defecto) -->
+                <nav id="navbar-mobile" class="navbar-mobile">
+                    <ul>
+                        <li><a class="nav-link active" href="#hero">Inicio</a></li>
+                        <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
+                        <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+                        <li><a class="nav-link register-trigger" href="registerModal">Registrarse</a>
+                        <li><a class="nav-link" href="#contact">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <i class="fa fa-bars mobile-nav-toggle"></i>
+        </div>
+    </header>
 
-
+    <!-- ======= Hero Section ======= -->
+    <section id="hero-ofertas">
+        <div class="hero-content">
+            <div class="text-ofertas">
+                <h2>Ofertas de Trabajo</h2>
+                <p>Explora las últimas ofertas de trabajo y encuentra la que mejor se ajusta a tus habilidades y carrera profesional.</p>
+            </div>
+        </div>
+    </section>
         <!-- Formulario de Filtro -->
-        <form id="filterForm">
-            <input type="text" id="searchKeyword" placeholder="Palabra clave...">
-            <select id="categorySelect">
-                <option value="all">Todas las Categorías</option>
-                <option value="tecnologia">Tecnología</option>
-                <option value="marketing">Marketing</option>
-                <option value="administracion">Administración</option>
-                <option value="educacion">Educación</option>
-                <!-- Otras categorías -->
-            </select>
-            <button type="submit">Buscar</button>
-        </form>
-
+    <section id="ofertas">
+        <div class="container pt-5">
+            <form id="filterForm" class="text-ofertas">
+                <input type="text" id="searchKeyword" placeholder="Palabra clave...">
+                <select id="categorySelect">
+                    <option value="all">Todas las Categorías</option>
+                    <option value="tecnologia">Tecnología</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="administracion">Administración</option>
+                    <option value="educacion">Educación</option>
+                    <!-- Otras categorías -->
+                </select>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
         <!-- Contenedor para Ofertas -->
-        <div id="offersContainer">
+        <div id="offersContainer" class="container-ofertas">
             <!-- Las ofertas se cargarán aquí dinámicamente -->
         </div>
-
-
+    </section>
         <!-- Lista de Ofertas de Trabajo -->
-        <div class="list-group">
-            <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Desarrollador Web Full Stack</h5>
-                    <small>Publicado hace 3 días</small>
-                </div>
-                <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
-                <small>Categoría: Tecnología</small>
-            </a>
-            <a href="oferta.php" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Desarrollador Web Full Stack</h5>
-                    <small>Publicado hace 3 días</small>
-                </div>
-                <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
-                <small>Categoría: Tecnología</small>
-            </a>
-            <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Desarrollador Web Full Stack</h5>
-                    <small>Publicado hace 3 días</small>
-                </div>
-                <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
-                <small>Categoría: Tecnología</small>
-            </a>
-            <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Desarrollador Web Full Stack</h5>
-                    <small>Publicado hace 3 días</small>
-                </div>
-                <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
-                <small>Categoría: Tecnología</small>
-            </a>
-            <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Desarrollador Web Full Stack</h5>
-                    <small>Publicado hace 3 días</small>
-                </div>
-                <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
-                <small>Categoría: Tecnología</small>
-            </a>
-            <!-- Repetir estructura para más ofertas -->
+    <section id="ofertas">
+        <div class="container">
+            <div class="list-group">
+                <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Desarrollador Web Full Stack</h5>
+                        <small>Publicado hace 3 días</small>
+                    </div>
+                    <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
+                    <small>Categoría: Tecnología</small>
+                </a>
+                <a href="oferta.php" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Desarrollador Web Full Stack</h5>
+                        <small>Publicado hace 3 días</small>
+                    </div>
+                    <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
+                    <small>Categoría: Tecnología</small>
+                </a>
+                <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Desarrollador Web Full Stack</h5>
+                        <small>Publicado hace 3 días</small>
+                    </div>
+                    <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
+                    <small>Categoría: Tecnología</small>
+                </a>
+                <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Desarrollador Web Full Stack</h5>
+                        <small>Publicado hace 3 días</small>
+                    </div>
+                    <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
+                    <small>Categoría: Tecnología</small>
+                </a>
+                <a href="detalle_oferta.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Desarrollador Web Full Stack</h5>
+                        <small>Publicado hace 3 días</small>
+                    </div>
+                    <p class="mb-1">Buscamos un desarrollador web con experiencia en tecnologías front-end y back-end...</p>
+                    <small>Categoría: Tecnología</small>
+                </a>
+                <!-- Repetir estructura para más ofertas -->
+            </div>
         </div>
+    </section>
+  <!-- End Hero Section -->
+
+  <!-- main aqui -->
+
+  <!-- Footer -->
+  <footer class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Portal de Búsqueda de Trabajo © 2024</small>
     </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="py-4 bg-dark text-white-50">
-        <div class="container text-center">
-            <small>Portal de Búsqueda de Trabajo © 2024</small>
-        </div>
-    </footer>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Scripts de Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="src/js/job-filter.js"></script>
-    <script src="src/js/notifications.js"></script>
-    <script>
-        // Supongamos que esto se llama después de un evento exitoso
-        showNotification('Aplicación enviada con éxito', 'success');
+  <!-- Contenedores para las Ventanas Emergentes -->
+  <div id="login-modal-container"></div>
+  <div id="register-modal-container"></div>
 
-        // O en caso de error
-        showNotification('Error al enviar la aplicación', 'error');
-    </script>
+  <!-- Carga Ventanas Emergentes -->
+  <script>
+    $(document).ready(function() {
+      $("#login-modal-container").load("loginModal.html");
+      $("#register-modal-container").load("registerModal.html");
+    });
+  </script>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <script src="assets/js/main.js"></script>
+
 </body>
 
 </html>
