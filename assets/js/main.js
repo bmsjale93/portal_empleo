@@ -192,34 +192,17 @@ function displayOffers(offers, container) {
  * VALIDAR FORMULARIO DE LOGIN
  *******************************************************************************/
 
-function updateUIAfterLogin(userName) {
-  // Ocultar botones de iniciar sesión y registrarse
-  $(".login-trigger").parent().hide();
-  $(".register-trigger").parent().hide();
-
-  // Añadir mensaje de bienvenida
-  var welcomeMessage = `<li><a href="#">Bienvenido, ${userName}</a></li>`;
-  $("#navbar ul").append(welcomeMessage);
-
-  // Opción adicional: cerrar modal con JavaScript nativo si jQuery no funciona
-  var loginModal = document.getElementById("loginModal");
-  $(loginModal).modal("hide"); // Intenta cerrar el modal con jQuery
-  if (loginModal) loginModal.style.display = "none"; // Fallback con JavaScript puro
-
-  // Asegúrate de que el modal se cierra correctamente
-  $("body").removeClass("modal-open");
-  $(".modal-backdrop").remove();
-}
-
-
 $(document).ready(function () {
-  $("#loginButton").click(function (e) {
+  // Cambio: Seleccionar el formulario por ID y manejar su evento 'submit'
+  $("#loginFormModal").submit(function (e) {
+    e.preventDefault(); // Prevenir el envío por defecto del formulario
+
     var email = $("#emailModal").val();
     var password = $("#passwordModal").val();
 
     $.ajax({
       type: "POST",
-      url: "login_user.php",
+      url: "login_user.php", // Asegúrate de que la ruta sea correcta
       data: {
         email: email,
         password: password,
@@ -227,7 +210,7 @@ $(document).ready(function () {
       success: function (response) {
         var data = JSON.parse(response);
         if (data.success) {
-          updateUIAfterLogin(data.userName);
+          updateUIAfterLogin();
         } else {
           alert("Usuario o contraseña incorrectos");
         }
@@ -239,7 +222,19 @@ $(document).ready(function () {
   });
 });
 
+function updateUIAfterLogin() {
+  // Ocultar botones de iniciar sesión y registrarse
+  $(".login-trigger, .register-trigger").closest("li").hide();
 
+  // Añadir mensaje de bienvenida genérico
+  var welcomeMessage = `<li><a href="#">Bienvenido, Usuario</a></li>`;
+  $("#navbar ul").append(welcomeMessage);
+
+  // Cerrar el modal de inicio de sesión de forma segura
+  $("#loginModal").modal("hide");
+  $("body").removeClass("modal-open");
+  $(".modal-backdrop").remove();
+}
 
 
 /********************************************************************************
