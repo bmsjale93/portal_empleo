@@ -3,6 +3,89 @@
  * Incluye validaciones, navegación por pasos y lógica de envío AJAX.
  ********************************************************************************/
 
+$(document).ready(function () {
+  // Cargar modales y asignar manejadores de eventos
+  loadModals();
+  assignEventHandlers();
+});
+
+// Función para cargar modales
+function loadModals() {
+  $("#login-modal-container").load("loginModal.html", function () {
+    initializeLoginForm();
+  });
+
+  $("#register-modal-container").load("registerModal.html", function () {
+    initializeRegistrationForm();
+  });
+}
+
+// Inicialización y manejo del formulario de inicio de sesión
+function initializeLoginForm() {
+  $("#loginFormModal").on("submit", function (e) {
+    e.preventDefault();
+    submitLoginForm();
+  });
+}
+
+// Envío del formulario de inicio de sesión
+function submitLoginForm() {
+  var email = $("#emailModal").val();
+  var password = $("#passwordModal").val();
+
+  if (email && password) {
+    $.ajax({
+      type: "POST",
+      url: "/portal_empleo/assets/database/login_user.php",
+      data: { email: email, password: password },
+      dataType: "json",
+      success: function (data) {
+        if (data.success) {
+          updateUIAfterLogin(data.username);
+        } else {
+          showAlert(data.message);
+        }
+      },
+      error: function (_jqXHR, textStatus, errorThrown) {
+        showAlert(
+          "Error en la solicitud AJAX: " + textStatus + ", " + errorThrown
+        );
+      },
+    });
+  }
+}
+
+// Inicialización y manejo del formulario de registro
+function initializeRegistrationForm() {
+  initializeStepNavigation();
+  // Enviar formulario de registro
+  $("#registerFormModal").on("submit", function (e) {
+    e.preventDefault();
+    var formData = $(this).serialize();
+
+    $.ajax({
+      type: "POST",
+      url: "/portal_empleo/assets/database/register_user.php",
+      data: formData,
+      dataType: "json",
+      success: function (response) {
+        if (response.success) {
+          // Cerrar el modal de registro
+          $("#registerModal").modal("hide");
+          // Actualizar la UI inmediatamente o recargar la página
+          updateUIAfterLogin(response.userName);
+        } else {
+          // Mostrar mensaje de error si no se pudo registrar
+          showAlert(response.message);
+        }
+      },
+      error: function (_jqXHR, textStatus, errorThrown) {
+        showAlert("Error en la solicitud: " + textStatus + ", " + errorThrown);
+      },
+    });
+  });
+}
+
 // Utilidades de Validación
 function isEmailValid(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -16,97 +99,43 @@ function isPhoneNumberValid(phone) {
   return /^[0-9]{7,}$/.test(phone);
 }
 
+// Actualización de UI después del Login
+function updateUIAfterLogin(username) {
+  $(".login-trigger, .register-trigger").closest("li").hide();
+  const welcomeMessage = `<li><a href="#">Bienvenido, ${username}</a></li>`;
+  $("#navbar ul").append(welcomeMessage);
+  $("#loginModal").modal("hide");
+  $("body").removeClass("modal-open");
+  $(".modal-backdrop").remove();
+}
+
 // Alerta de Mensajes
 function showAlert(message) {
   alert(message);
 }
 
-// Actualización de UI después del Login (Modificada)
-function updateUIAfterLogin(username) {
-    $(".login-trigger, .register-trigger").closest("li").hide();
-    const welcomeMessage = `<li><a href="#">Bienvenido, ${username}</a></li>`;
-    $("#navbar ul").append(welcomeMessage);
-    $("#loginModal").modal("hide");
-    $("body").removeClass("modal-open");
-    $(".modal-backdrop").remove();
-}
-
-// Inicio de Sesión (Modificado para incluir el nombre del usuario)
-$(document).ready(function () {
-    $("#login-modal-container").load("loginModal.html", function () {
-        $("#loginFormModal").submit(function (e) {
-            e.preventDefault();
-
-            const email = $("#emailModal").val();
-            const password = $("#passwordModal").val();
-
-            $.ajax({
-                type: "POST",
-                url: "/portal_empleo/assets/database/login_user.php",
-                data: { email, password },
-                dataType: 'json', // Asegúrate de que la respuesta se trate como JSON
-                success: function (data) {
-                    if (data.success) {
-                        // Asume que el servidor devuelve el nombre del usuario en caso de éxito
-                        updateUIAfterLogin(data.username); // Modifica para pasar el nombre del usuario
-                    } else {
-                        showAlert(data.message);
-                    }
-                },
-                error: function (_jqXHR, textStatus, errorThrown) {
-                    showAlert("Error en la solicitud AJAX: " + textStatus + ", " + errorThrown);
-                },
-            });
-        });
-    });
-});
-
-
-// Registro
-$(document).ready(function () {
-  $("#register-modal-container").load("registerModal.html", function () {
-    initializeRegistrationFormValidation();
-  });
-});
-
-function initializeRegistrationFormValidation() {
-  const registerForm = document.getElementById("registerFormModal");
-  registerForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (validateRegistrationForm()) {
-      e.preventDefault();
-    } else {
-    } 
-  });
-
-  initializeStepNavigation();
-}
-
 // Validación del Formulario de Registro
 function validateRegistrationForm() {
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
   const phoneRegex = /^[0-9]{7,}$/;
 
-  const name = document.getElementById("registerName").value;
-  const email = document.getElementById("registerEmail").value;
-  const password = document.getElementById("registerPassword").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-  const address = document.getElementById("address").value;
-  const city = document.getElementById("city").value;
-  const country = document.getElementById("country").value;
-  const postalCode = document.getElementById("postalCode").value;
-  const phone = document.getElementById("phone").value;
-  const userType = document.getElementById("userType").value;
+  const name = $("#registerName").val();
+  const email = $("#registerEmail").val();
+  const password = $("#registerPassword").val();
+  const confirmPassword = $("#confirmPassword").val();
+  const address = $("#address").val();
+  const city = $("#city").val();
+  const country = $("#country").val();
+  const postalCode = $("#cp").val();
+  const phone = $("#phone").val();
 
-  // Validación de campos
   let errorMessage = "";
   if (!name) errorMessage += "Por favor, ingrese su nombre.\n";
   if (!email || !emailRegex.test(email))
     errorMessage += "Por favor, ingrese un correo electrónico válido.\n";
   if (!password || !passwordRegex.test(password))
-    errorMessage +=
-      "La contraseña debe tener al menos 8 caracteres, incluyendo un número, una letra mayúscula y una letra minúscula.\n";
+    errorMessage += "La contraseña debe tener al menos 8 caracteres, incluyendo un número, una letra mayúscula y una letra minúscula.\n";
   if (password !== confirmPassword)
     errorMessage += "Las contraseñas no coinciden.\n";
   if (!address) errorMessage += "Por favor, ingrese su dirección.\n";
@@ -117,7 +146,7 @@ function validateRegistrationForm() {
     errorMessage += "Por favor, ingrese un número de teléfono válido.\n";
 
   if (errorMessage) {
-    alert(errorMessage);
+    showAlert(errorMessage);
     return false;
   }
   return true;
@@ -125,28 +154,21 @@ function validateRegistrationForm() {
 
 // Navegación por Pasos en el Formulario de Registro
 function initializeStepNavigation() {
-  $("#registerFormModal")
-    .find("button")
-    .click(function (e) {
-      navigateSteps(this, e);
-    });
+  $("#registerFormModal").find("button").click(function (e) {
+    navigateSteps(this, e);
+  });
   goToStep(1); // Inicializar en el paso 1
 }
 
 function navigateSteps(button, event) {
-  const currentStep = $(button)
-    .closest('div[id^="step"]')
-    .attr("id")
-    .replace("step", "");
-  const isNext = $(button).text().includes("Siguiente");
-  const targetStep = isNext
-    ? parseInt(currentStep) + 1
-    : parseInt(currentStep) - 1;
+  var currentStep = $(button).closest('div[id^="step"]').attr("id").replace("step", "");
+  var isNext = $(button).text().includes("Siguiente");
+  var targetStep = isNext ? parseInt(currentStep) + 1 : parseInt(currentStep) - 1;
 
   if (validateStep(parseInt(currentStep))) {
     goToStep(targetStep);
   } else {
-    event.preventDefault(); // Prevenir la acción por defecto si la validación falla
+    event.preventDefault();
   }
 }
 
@@ -180,6 +202,10 @@ function validateStep(step) {
         errorMessage += "Las contraseñas no coinciden.\n";
         isValid = false;
       }
+      if (!/^[0-9]{7,}$/.test($("#phone").val().trim())) {
+        errorMessage += "Por favor, ingrese un número de teléfono válido.\n";
+        isValid = false;
+      }
       break;
     case 2:
       // Validación para el Paso 2: Dirección
@@ -195,17 +221,13 @@ function validateStep(step) {
         errorMessage += "Por favor, ingrese su país.\n";
         isValid = false;
       }
-      break;
-    case 3:
-      // Validación para el Paso 3: Información Adicional
-      if ($("#postalCode").val().trim() === "") {
+      if ($("#cp").val().trim() === "") {
         errorMessage += "Por favor, ingrese su código postal.\n";
         isValid = false;
       }
-      if (!/^[0-9]{7,}$/.test($("#phone").val().trim())) {
-        errorMessage += "Por favor, ingrese un número de teléfono válido.\n";
-        isValid = false;
-      }
+      break;
+    case 3:
+      // Validación para el Paso 3: Tipo de Usuario
       if ($("#userType").val().trim() === "") {
         errorMessage += "Por favor, seleccione un tipo de usuario.\n";
         isValid = false;
@@ -225,17 +247,18 @@ function validateStep(step) {
 }
 
 function goToStep(step) {
-  // Ocultar todos los pasos y mostrar el actual
-  $('[id^="step"]').hide();
-  $("#step" + step).show();
-  updateProgressBar(step);
+  $('[id^="step"]').hide(); // Ocultar todos los pasos
+  $("#step" + step).show(); // Mostrar el paso actual
+  updateProgressBar(step); // Actualizar la barra de progreso
 }
 
 // Actualizar la Barra de Progreso del Formulario
 function updateProgressBar(step) {
   const percentage = step === 1 ? 33 : step === 2 ? 66 : 100;
-  $("#progressBar")
-    .css("width", percentage + "%")
-    .attr("aria-valuenow", percentage)
-    .text(`Paso ${step} de 3`);
+  $("#progressBar").css("width", percentage + "%").attr("aria-valuenow", percentage).text(`Paso ${step} de 3`);
+}
+
+// Asignar manejadores de eventos adicionales si es necesario
+function assignEventHandlers() {
+  // Esta función se mantendría para futuras expansiones o para manejar eventos globales adicionales.
 }
