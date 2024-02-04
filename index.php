@@ -247,7 +247,7 @@ session_start();
 
           <div class="col-lg-4 col-md-6">
             <div class="member">
-              <div class="pic"><img src="assets/img/team-2.jpg" alt=""></div>
+              <div class="pic"><img src="assets/img/alzaro-team.png" alt=""></div>
               <div class="details">
                 <h4>Álzaro Álvarez</h4>
                 <span>Desarrollador Web</span>
