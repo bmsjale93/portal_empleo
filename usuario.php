@@ -2,10 +2,13 @@
 session_start();
 include 'assets/database/db.php';
 
-// Comprobación de sesión
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+
+
 if (!isset($_SESSION['userID'])) {
-  echo "No encuentra ID";
-  exit;
+  echo "No se encuentra ID";
+  exit();
 }
 
 $userID = $_SESSION['userID'];
@@ -17,8 +20,8 @@ $result = $stmt->get_result();
 $userInfo = $result->fetch_assoc();
 
 if (!$userInfo) {
-  echo "No se pudo cargar la información del usuario.";
-  exit;
+echo "No se pudo cargar la información del usuario.";
+exit;
 }
 
 // Supongamos que este es el lugar donde obtienes las aplicaciones
