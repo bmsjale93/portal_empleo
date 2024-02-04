@@ -358,6 +358,26 @@ h6 {
   padding: 0;
 }
 
+#hero-ofertas {
+  width: 100%;
+  height: 30vh;
+  position: relative;
+  overflow: hidden;
+}
+
+#hero-ofertas::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/hero-carousel/objetos-roca-natural-enmarcan-tranquilo-paisaje-acuatico-ia-generativa.jpg") no-repeat;
+  background-size: cover;
+  opacity: 0.3; 
+}
+
+
 #hero .hero-content {
   position: absolute;
   bottom: 0;
@@ -372,14 +392,52 @@ h6 {
   text-align: center;
 }
 
-#hero .hero-content h2 {
+#hero-ofertas .hero-content {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+#hero-btn {
+  width: 100%;
+  height: 10vh;
+  position: relative;
+  background-size: cover;
+  margin-top: 50px;
+}
+
+#hero-btn .hero-content-btn {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+
+#hero .hero-content h2,
+#hero-ofertas .hero-content h2{
   color: #0c2e8a;
   margin-bottom: 30px;
   font-size: 64px;
   font-weight: 700;
 }
 
-#hero .hero-content h2 span {
+#hero .hero-content h2 span,
+#hero-ofertas .hero-content h2 span{
   color: #50d8af;
 }
 
@@ -393,7 +451,8 @@ h6 {
 }
 
 #hero .hero-content .btn-get-started,
-#hero .hero-content .btn-projects {
+#hero .hero-content .btn-projects,
+#hero-btn .hero-content-btn .btn-projects{
   font-family: "Raleway", sans-serif;
   font-size: 15px;
   font-weight: bold;
@@ -416,12 +475,14 @@ h6 {
   color: #0c2e8a;
 }
 
-#hero .hero-content .btn-projects {
+#hero .hero-content .btn-projects,
+#hero-btn .hero-content-btn .btn-projects {
   background: #50d8af;
   border: 2px solid #50d8af;
 }
 
-#hero .hero-content .btn-projects:hover {
+#hero .hero-content .btn-projects:hover,
+#hero-btn .hero-content-btn .btn-projects:hover {
   background: none;
   color: #50d8af;
 }
@@ -488,6 +549,71 @@ section {
 .section-header p {
   padding: 0;
   margin: 0;
+}
+/* Sections Ofertas
+--------------------------------*/
+#ofertas {
+  padding: 30px 0;
+}
+
+.section-ofertas {
+  padding: auto;
+}
+
+.text-ofertas h2 {
+  padding-top: 40px;
+  color: #0c2e8a;
+  font-weight: 700;
+  font-size: 36px;
+  font-family: "Raleway", sans-serif;
+}
+
+.text-ofertas p,
+ .text-ofertas ul {
+  padding-top: 20px;
+  font-size: 20px;
+  font-family: "Raleway", sans-serif;
+}
+
+.container-ofertas {
+  padding: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-ofertas div {
+  margin-top: 50px;
+}
+
+.container-ofertas div h3{
+  margin-top: 50px;
+  color: #0c2e8a;
+}
+.container-ofertas div p{
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .container-ofertas {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container-ofertas {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-ofertas {
+    width: 1170px;
+  }
+}
+
+/* FilterForm
+--------------------------------*/
+
+#filterForm .searchKeyword {
+  font-size: 50px;
 }
 
 /* About Section

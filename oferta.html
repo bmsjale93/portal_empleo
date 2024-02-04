@@ -1,86 +1,160 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Detalle de la Oferta - Portal de Búsqueda de Trabajo</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="src/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portal de Búsqueda de Empleo</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Portal de Trabajo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ofertas de Trabajo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Iniciar Sesión</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Registrarse</a>
-                </li>
-            </ul>
+
+  <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-flex align-items-center">
+        <div class="container d-flex justify-content-between">
+        <div class="contact-info d-flex align-items-center">
+            <i class="fa fa-envelope d-flex align-items-center">
+            <a href="mailto:contact@example.com">contacto@trabajoempleo.com</a>
+            </i>
+            <i class="fa fa-phone d-flex align-items-center ms-4">
+            <span>+34 612 612 612</span>
+            </i>
         </div>
-    </nav>
+        <div class="social-links d-flex align-items-center">
+            <a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        </div>
+    </section>
+  <!-- End Top Bar -->
 
-    <div class="container mt-4">
-        <h1>Desarrollador Web Full Stack</h1>
-        <p class="text-muted">Publicado el 24 de enero de 2024</p>
-
-        <!-- Detalles de la Oferta -->
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Descripción del Trabajo</h5>
-                <p class="card-text">Buscamos un desarrollador web entusiasta para unirse a nuestro equipo dinámico. La posición implica trabajar tanto en el front-end como en el back-end de nuestras aplicaciones web.</p>
-
-                <h5 class="card-title">Requisitos</h5>
+  <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex justify-content-between">
+            <div id="logo">
+                <h1><a href="index.html">Work<span>Now</span></a></h1>
+            </div>
+            <nav id="navbar" class="navbar">
                 <ul>
-                    <li>Experiencia en HTML, CSS, JavaScript.</li>
-                    <li>Conocimiento de frameworks de back-end como Node.js o Django.</li>
-                    <li>Habilidad para trabajar en equipo y buena comunicación.</li>
-                    <!-- Más requisitos -->
+                    <li><a class="nav-link active" href="#hero">Inicio</a></li>
+                    <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
+                    <li><a class="nav-link" href="#contact">Contacto</a></li>
+                    <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+                    <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
+                
                 </ul>
+            </nav>
+            <div>
+                <!-- Menú (oculto por defecto) -->
+                <nav id="navbar-mobile" class="navbar-mobile">
+                    <ul>
+                        <li><a class="nav-link active" href="#hero">Inicio</a></li>
+                        <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
+                        <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+                        <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a>
+                        <li><a class="nav-link" href="#contact">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <i class="fa fa-bars mobile-nav-toggle"></i>
+        </div>
+    </header>
 
-                <h5 class="card-title">Beneficios</h5>
-                <p class="card-text">Ofrecemos un ambiente de trabajo flexible, oportunidades de crecimiento profesional y más.</p>
+  <!-- ======= Hero Section ======= -->
+    <section id="hero-ofertas">
 
+        <div class="hero-content">
+            <h2>Desarrollador Web <br><span>Full Stack</span></h2>
+            <p class="text-muted">Publicado el 24 de enero de 2024</p>
+        </div>
+    </section>
+            <!-- Detalles de la Oferta -->
+    <section id="ofertas">
+        <div class="container pt-5">
+            <div class="section-ofertas">
+                <div class="text-ofertas">
+                    <h2>Descripción del Trabajo</h2>
+                    <p>Buscamos un desarrollador web entusiasta para unirse a nuestro equipo dinámico. La posición implica trabajar tanto en el front-end como en el back-end de nuestras aplicaciones web.</p>
+                </div>
+                <div class="text-ofertas">
+                    <h2>Requisitos</h2>
+                    <ul>
+                        <li>Experiencia en HTML, CSS, JavaScript.</li>
+                        <li>Conocimiento de frameworks de back-end como Node.js o Django.</li>
+                        <li>Habilidad para trabajar en equipo y buena comunicación.</li>
+                            <!-- Más requisitos -->
+                    </ul>
+                </div>
+                <div class="text-ofertas">
+                    <h2>Beneficios</h2>
+                    <p>Ofrecemos un ambiente de trabajo flexible, oportunidades de crecimiento profesional y más.</p>
+                </div>
                 <!-- Botón para Aplicar -->
-                <a href="aplicar.html" class="btn btn-primary">Aplicar a esta Oferta</a>
+                <section id="hero-btn">
+                    <div class="hero-content-btn">
+                        <a href="aplicar.html" class="btn-projects scrollto">Aplicar a esta Oferta</a>
+                    </div>
+                </section>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- End Hero Section -->
+
+    <!-- Main iria aqui -->
 
     <!-- Footer -->
     <footer class="py-4 bg-dark text-white-50">
         <div class="container text-center">
-            <small>Portal de Búsqueda de Trabajo © 2024</small>
+        <small>Portal de Búsqueda de Trabajo © 2024</small>
         </div>
     </footer>
 
-    <!-- Scripts de Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Contenedores para las Ventanas Emergentes -->
+    <div id="login-modal-container"></div>
+    <div id="register-modal-container"></div>
+
+    <!-- Carga Ventanas Emergentes -->
+    <script>
+        $(document).ready(function() {
+        $("#login-modal-container").load("loginModal.html");
+        $("#register-modal-container").load("registerModal.html");
+        });
+    </script>
+
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="src/js/notifications.js"></script>
-    <script>
-        // Supongamos que esto se llama después de un evento exitoso
-        showNotification('Aplicación enviada con éxito', 'success');
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-        // O en caso de error
-        showNotification('Error al enviar la aplicación', 'error');
-    </script>
+    <script src="assets/js/main.js"></script>
+    
 </body>
 
 </html>
