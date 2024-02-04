@@ -1,18 +1,30 @@
 <?php
+session_start();
 include 'db.php';
 
-$idUsuario = $_POST['idUsuario']; // ID del usuario que aplica
-$idOferta = $_POST['idOferta']; // ID de la oferta de trabajo
-
-$sql = "INSERT INTO aplicaciones (id_usuario, id_oferta) VALUES (?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ii", $idUsuario, $idOferta);
-$stmt->execute();
-
-if ($stmt->affected_rows > 0) {
-    echo "Aplicación realizada con éxito";
-} else {
-    echo "Error al aplicar a la oferta: " . $conn->error;
+if (!isset($_SESSION['userID'])) {
+    echo json_encode(['success' => false, 'message' => 'Usuario no autenticado']);
+    exit;
 }
 
-$conn->close();
+// Asegúrate de que el método de solicitud sea POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $usuarioID = $_SESSION['userID'];
+    $ofertaID = $_POST['ofertaID'];
+
+    // Preparar y ejecutar la consulta para insertar la aplicación
+    $sql = "INSERT INTO Aplicaciones (UsuarioID, OfertaID) VALUES (?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $usuarioID, $ofertaID);
+
+    if ($stmt->execute()) {
+        echo json_encode(['success' => true, 'message' => 'Aplicación registrada exitosamente']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error al registrar la aplicación']);
+    }
+
+    $stmt->close();
+    $conn->close();
+} else {
+    echo json_encode(['success' => false, 'message' => 'Método de solicitud no permitido']);
+}

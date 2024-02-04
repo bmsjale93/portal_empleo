@@ -62,6 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error al preparar la consulta: " . $conn->error;
     }
 
+    $_SESSION['userID'] = $conn->insert_id;
+
     $conn->close();
 } else {
     header('Content-Type: application/json');
