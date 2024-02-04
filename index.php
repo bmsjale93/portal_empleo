@@ -221,6 +221,68 @@ session_start();
       </div>
     </section><!-- End Clients Section -->
 
+    <!-- ======= Team Section ======= -->
+    <section id="team">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Nuestro Equipo</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="assets/img/alex-team.png" alt=""></div>
+              <div class="details">
+                <h4>Alejandro Delgado</h4>
+                <span>Desarrollador Web</span>
+                <p>La vida es eso que pasa mientras revisas el CSS</p>
+                <div class="social">
+                  <a href=""><i class="fa-brands fa-twitter"></i></a>
+                  <a href=""><i class="fa-brands fa-facebook"></i></a>
+                  <a href=""><i class="fa-brands fa-instagram"></i></a>
+                  <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="assets/img/team-2.jpg" alt=""></div>
+              <div class="details">
+                <h4>Álzaro Álvarez</h4>
+                <span>Desarrollador Web</span>
+                <p>Como dijo un Reggetonero: "Vamo' a frontear"</p>
+                <div class="social">
+                  <a href=""><i class="fa-brands fa-twitter"></i></a>
+                  <a href=""><i class="fa-brands fa-facebook"></i></a>
+                  <a href=""><i class="fa-brands fa-instagram"></i></a>
+                  <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="assets/img/Café team.png" alt=""></div>
+              <div class="details">
+                <h4>Café en Grandes Cantidades</h4>
+                <span>CEO</span>
+                <p>Bendita bebida</p>
+                <div class="social">
+                  <a href=""><i class="fa-brands fa-twitter"></i></a>
+                  <a href=""><i class="fa-brands fa-facebook"></i></a>
+                  <a href=""><i class="fa-brands fa-instagram"></i></a>
+                  <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </section><!-- End Team Section -->
+
+
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials">
       <div class="container" data-aos="fade-up">

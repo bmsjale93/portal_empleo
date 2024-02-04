@@ -953,6 +953,12 @@ section {
   font-size: 13px;
 }
 
+#team .member p {
+  font-style: italic;
+  display: block;
+  font-size: 10px;
+}
+
 #team .member .social {
   margin-top: 5px;
 }
