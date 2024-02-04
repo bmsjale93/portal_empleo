@@ -574,6 +574,7 @@ section {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,.1);
+}
 
 #filterForm .form-control {
     margin: 10px 5px;
@@ -1215,18 +1216,20 @@ section {
 
 .apply-btn{
   width: 100%;
-    background-color: #007bff;
+    background-color: #007bff !important;
     font-size: 20px !important;
     border-color: #007bff;
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out !important;
     margin-top: 30px;
     margin-bottom: 50px;
 }
 
 .apply-btn:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: transparent !important;
+    border-color: #0056b3 !important;
+    border: 2px solid;
     transform: scale(1.05);
+    color: #0056b3 !important;
 }
 
 .card-footer {
@@ -1279,5 +1282,4 @@ section {
   color: white;
   padding: 10px 15px;
   margin-top: 0px !important;
-}
 }
