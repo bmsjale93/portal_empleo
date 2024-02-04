@@ -2,16 +2,13 @@
 session_start();
 include 'assets/database/db.php';
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-
 if (!isset($_SESSION['userID'])) {
-  echo "No se encuentra ID";
-  exit();
+  echo "No se encuentra el ID"; // Redirige al usuario a la página de inicio de sesión si no está logueado
+  exit;
 }
 
 $userID = $_SESSION['userID'];
+// Obtener la información del usuario
 $sql = "SELECT * FROM Usuarios WHERE ID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $userID);
@@ -20,13 +17,28 @@ $result = $stmt->get_result();
 $userInfo = $result->fetch_assoc();
 
 if (!$userInfo) {
-echo "No se pudo cargar la información del usuario.";
-exit;
+  echo "No se pudo cargar la información del usuario.";
+  exit;
 }
 
-// Supongamos que este es el lugar donde obtienes las aplicaciones
-// $aplicaciones = obtenerAplicaciones($userID); // Esta línea es un ejemplo, reemplázala según tu lógica de negocio
+// Obtener las aplicaciones del usuario
+$aplicacionesSql = "SELECT Aplicaciones.FechaAplicacion, Ofertas.Titulo, Ofertas.Descripcion 
+                    FROM Aplicaciones 
+                    JOIN Ofertas ON Aplicaciones.OfertaID = Ofertas.ID 
+                    WHERE Aplicaciones.UsuarioID = ?";
+$stmt = $conn->prepare($aplicacionesSql);
+$stmt->bind_param("i", $userID);
+$stmt->execute();
+$aplicacionesResult = $stmt->get_result();
+
+$aplicaciones = [];
+while ($aplicacion = $aplicacionesResult->fetch_assoc()) {
+  $aplicaciones[] = $aplicacion;
+}
+$stmt->close();
 ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -85,11 +97,26 @@ exit;
           <div id="userApplicationsCard" class="card mb-4">
             <div class="card-header">Mis Aplicaciones</div>
             <div class="card-body">
-              <ul class="list-group">
-                <!-- Aquí iría el código PHP para mostrar las aplicaciones del usuario -->
-              </ul>
+              <?php if (count($aplicaciones) > 0) : ?>
+                <ul class="list-group">
+                  <?php foreach ($aplicaciones as $aplicacion) : ?>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <div>
+                        <h5><?php echo htmlspecialchars($aplicacion['Titulo']); ?></h5>
+                        <p><?php echo htmlspecialchars($aplicacion['Descripcion']); ?></p>
+                        <small>Aplicado el: <?php echo htmlspecialchars($aplicacion['FechaAplicacion']); ?></small>
+                      </div>
+                      <button class="btn btn-danger btn-sm delete-application" data-id="<?php echo $aplicacion['ID']; ?>">Borrar</button>
+                    </li>
+                  <?php endforeach; ?>
+
+                </ul>
+              <?php else : ?>
+                <p>No has aplicado a ninguna oferta aún.</p>
+              <?php endif; ?>
             </div>
           </div>
+
           <?php
           $sql = "SELECT id, nombreArchivo, rutaArchivo, fechaSubida FROM Curriculums WHERE usuarioID = ?";
           if ($stmt = $conn->prepare($sql)) {
@@ -159,7 +186,7 @@ exit;
   <script src="assets/js/delete_account.js"></script>
   <script src="assets/js/upload_cv.js"></script>
   <script src="assets/js/delete_cv.js"></script>
-
+  <script src="assets/js/borrar_aplicacion.js"></script>
 
 </body>
 

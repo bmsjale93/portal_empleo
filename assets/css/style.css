@@ -552,8 +552,44 @@ section {
 }
 /* Sections Ofertas
 --------------------------------*/
+/* Estilos para la sección de ofertas de trabajo */
 #ofertas {
-  padding: 30px 0;
+    background-color: #f8f9fa; /* Un fondo claro, pero que se distinga del blanco puro */
+    padding: 40px 0; /* Espaciado superior e inferior */
+}
+
+#ofertas h2 {
+    color: #495057; /* Un color oscuro para el texto que asegure buena legibilidad */
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    text-align: center; /* Alineación central del título */
+    font-size: 24px; /* Tamaño de fuente adecuado para el título */
+}
+
+/* Estilos para el formulario de búsqueda */
+#filterForm {
+    max-width: 800px; /* Ancho máximo para el formulario */
+    margin: auto; /* Centrado del formulario */
+    padding: 15px; /* Padding interno para el formulario */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0,0,0,.1); /* Sombra suave para darle profundidad */
+}
+
+#filterForm .form-control {
+    margin: 10px 5px; /* Espaciado alrededor de los campos de entrada */
+}
+
+#filterForm button {
+    background-color: #007bff; /* Color de fondo para el botón */
+    color: white; /* Color del texto para el botón */
+    border: 0; /* Eliminar el borde del botón */
+    padding: 10px 20px; /* Padding para el botón */
+    border-radius: 5px; /* Bordes redondeados para el botón */
+    cursor: pointer; /* Cursor tipo puntero para indicar acción */
+    transition: background-color 0.3s ease; /* Transición suave al cambiar el color de fondo */
+}
+
+#filterForm button:hover {
+    background-color: #0056b3; /* Cambio de color al pasar el ratón por encima */
 }
 
 .section-ofertas {
@@ -1193,3 +1229,34 @@ section {
   margin-top: 0.5rem;
 }
 
+.oferta .card-header {
+  font-size: 1.25rem; /* Ajustar el tamaño del título */
+}
+
+.oferta .card-footer {
+  display: flex;
+  justify-content: space-between; /* Espaciar los botones uniformemente */
+}
+
+.card-body {
+  padding-top: 0; /* Elimina el padding superior si es necesario */
+}
+
+.card-title {
+  margin-top: 0; /* Asegura que el título no tenga margen superior */
+}
+
+.card-footer {
+  padding: 0.75rem 1.25rem; /* Ajusta el padding para alinear los botones si es necesario */
+}
+
+.card-footer .btn {
+  width: 48%; /* Asegura que cada botón ocupe aproximadamente la mitad del espacio disponible */
+}
+
+.card-header {
+  background-color: #007bff; /* Color de fondo para el encabezado */
+  color: white; /* Color del texto para el encabezado */
+  padding: 10px 15px; /* Espaciado interior para el encabezado */
+  margin-top: 0px !important;
+}

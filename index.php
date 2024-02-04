@@ -68,9 +68,12 @@ session_start();
           <li><a class="nav-link active" href="#hero">Inicio</a></li>
           <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
           <li><a class="nav-link" href="#contact">Contacto</a></li>
-          <?php if (isset($_SESSION['nombreUsuario'])) : ?>
-            <li><a href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
+          <?php if (isset($_SESSION['userID'])) : ?>
+            <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
+            <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
+            <li><a class="nav-link" href="logout.php">Cerrar Sesión</a></li>
           <?php else : ?>
+            <!-- Si el usuario no ha iniciado sesión, mostrar opciones de inicio de sesión y registro -->
             <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
             <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
           <?php endif; ?>
@@ -82,9 +85,16 @@ session_start();
           <ul>
             <li><a class="nav-link active" href="#hero">Inicio</a></li>
             <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
-            <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
-            <li><a class="nav-link register-trigger" href="registerModal">Registrarse</a>
             <li><a class="nav-link" href="#contact">Contacto</a></li>
+            <?php if (isset($_SESSION['userID'])) : ?>
+              <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
+              <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
+              <li><a class="nav-link" href="logout.php">Cerrar Sesión</a></li>
+            <?php else : ?>
+              <!-- Si el usuario no ha iniciado sesión, mostrar opciones de inicio de sesión y registro -->
+              <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+              <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
+            <?php endif; ?>
           </ul>
         </nav>
       </div>
