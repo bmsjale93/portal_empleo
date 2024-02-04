@@ -1,15 +1,15 @@
 <?php
 session_start();
-require 'db.php';
+include 'assets/database/db.php';
 
+// Comprobación de sesión
 if (!isset($_SESSION['userID'])) {
-  header('Location: login.php');
+  echo "No encuentra ID";
   exit;
 }
 
 $userID = $_SESSION['userID'];
-// Preparar la consulta para obtener la información del usuario
-$sql = "SELECT Nombre, Email, Direccion, Ciudad, Pais, CodigoPostal, Telefono FROM Usuarios WHERE ID = ?";
+$sql = "SELECT * FROM Usuarios WHERE ID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $userID);
 $stmt->execute();
@@ -20,29 +20,23 @@ if (!$userInfo) {
   echo "No se pudo cargar la información del usuario.";
   exit;
 }
-$conn->close();
+
+// Supongamos que este es el lugar donde obtienes las aplicaciones
+// $aplicaciones = obtenerAplicaciones($userID); // Esta línea es un ejemplo, reemplázala según tu lógica de negocio
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil del Usuario - Portal de Empleo</title>
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <title>Panel de Usuario - Portal de Empleo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="assets/css/user_style.css" rel="stylesheet">
 </head>
 
-<body>
-
-  <header>
-    <!-- Navbar -->
+<body id="userProfilePage">
+  <header id="userHeader">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
         <a class="navbar-brand" href="index.php">Work<span>Now</span></a>
@@ -58,22 +52,20 @@ $conn->close();
               <a class="nav-link" href="perfil_usuario.php">Mi Perfil <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="logout.php">Cerrar Sesión</a>
+              <a class="nav-link" href="assets/database/logout.php">Cerrar Sesión</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
-
-  <main class="py-4">
+  <main id="userMain" class="py-4">
     <div class="container">
       <div class="row">
-        <!-- Información Personal -->
-        <div class="col-lg-4 mb-4">
-          <div class="card">
+        <div class="col-md-4">
+          <div id="userPersonalInfoCard" class="card">
+            <div class="card-header">Información Personal</div>
             <div class="card-body">
-              <h5 class="card-title">Información Personal</h5>
               <p>Nombre: <?php echo htmlspecialchars($userInfo['Nombre']); ?></p>
               <p>Email: <?php echo htmlspecialchars($userInfo['Email']); ?></p>
               <p>Dirección: <?php echo htmlspecialchars($userInfo['Direccion']); ?></p>
@@ -81,40 +73,72 @@ $conn->close();
               <p>País: <?php echo htmlspecialchars($userInfo['Pais']); ?></p>
               <p>Código Postal: <?php echo htmlspecialchars($userInfo['CodigoPostal']); ?></p>
               <p>Teléfono: <?php echo htmlspecialchars($userInfo['Telefono']); ?></p>
+              <p>Tipo de Usuario: <?php echo htmlspecialchars($userInfo['TipoUsuario']); ?></p>
+              <p>Fecha de Registro: <?php echo htmlspecialchars(date('d/m/Y H:i:s', strtotime($userInfo['FechaRegistro']))); ?></p>
             </div>
           </div>
         </div>
-
-        <!-- Aplicaciones y CV -->
-        <div class="col-lg-8">
-          <div class="card mb-4">
+        <div class="col-md-8">
+          <div id="userApplicationsCard" class="card mb-4">
+            <div class="card-header">Mis Aplicaciones</div>
             <div class="card-body">
-              <h5 class="card-title">Mis Aplicaciones</h5>
-              <!-- Las aplicaciones se cargarán aquí -->
+              <ul class="list-group">
+                <!-- Aquí iría el código PHP para mostrar las aplicaciones del usuario -->
+              </ul>
             </div>
           </div>
-          <div class="card mb-4">
+          <?php
+          $sql = "SELECT id, nombreArchivo, rutaArchivo, fechaSubida FROM Curriculums WHERE usuarioID = ?";
+          if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("i", $_SESSION['userID']);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+
+            echo "<div id='userCurriculumsCard' class='card mb-4'>";
+            echo "<div class='card-header'>Mis Currículums</div>";
+            echo "<div class='card-body'>";
+            if ($resultado->num_rows > 0) {
+              echo "<ul class='list-group'>";
+              while ($row = $resultado->fetch_assoc()) {
+                echo "<li class='list-group-item d-flex justify-content-between align-items-center'>";
+                echo htmlspecialchars($row['nombreArchivo']);
+                echo " <small>Subido el: " . date("d/m/Y", strtotime($row['fechaSubida'])) . "</small>";
+                // Botón para borrar el currículum
+                echo "<button class='btn btn-danger btn-sm' onclick='borrarCurriculum(" . $row['id'] . ")'>Borrar</button>";
+                echo "</li>";
+              }
+              echo "</ul>";
+            } else {
+              echo "<p>No has subido ningún currículum aún.</p>";
+            }
+            echo "</div>";
+            echo "</div>";
+            $stmt->close();
+          }
+          $conn->close();
+          ?>
+          <div id="userUploadCvCard" class="card mb-4">
+            <div class="card-header">Subir Currículum</div>
             <div class="card-body">
-              <h5 class="card-title">Subir Currículum</h5>
-              <form>
+              <form id="uploadCvForm" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                  <input type="file" class="form-control-file">
+                  <label for="cvFile">Seleccione el archivo de Currículum (PDF, máximo 2MB):</label>
+                  <input type="file" class="form-control-file" id="cvFile" name="cv" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Subir</button>
               </form>
             </div>
           </div>
-          <div class="card">
+          <div id="userAccountSettingsCard" class="card">
+            <div class="card-header">Configuración de la Cuenta</div>
             <div class="card-body">
-              <h5 class="card-title">Eliminar Cuenta</h5>
-              <button class="btn btn-danger" onclick="deleteAccount()">Eliminar mi cuenta</button>
+              <button class="btn btn-danger" onclick="deleteAccount()">Eliminar Cuenta</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </main>
-
   <footer class="bg-dark text-white py-4">
     <div class="container text-center">
       Portal de Búsqueda de Trabajo © 2024
@@ -126,15 +150,14 @@ $conn->close();
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<script>
-    function deleteAccount() {
-      const confirmation = confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.");
-      if (confirmation) {
-        // Implementar la lógica para eliminar la cuenta aquí
-      }
-    }
-  </script>
+  <script src="assets/js/modal.js"></script>
+  <script src="assets/js/login_register.js"></script>
+  <script src="assets/js/application-status.js"></script>
+  <script src="assets/js/delete_account.js"></script>
+  <script src="assets/js/upload_cv.js"></script>
+  <script src="assets/js/delete_cv.js"></script>
+
 
 </body>
 
-</html> 
+</html>

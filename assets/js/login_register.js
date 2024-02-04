@@ -102,7 +102,7 @@ function isPhoneNumberValid(phone) {
 // Actualización de UI después del Login
 function updateUIAfterLogin(username) {
   $(".login-trigger, .register-trigger").closest("li").hide();
-  const welcomeMessage = `<li><a href="#">Bienvenido, ${username}</a></li>`;
+  const welcomeMessage = `<li><a href="usuario.php">Bienvenido, ${username}</a></li>`;
   $("#navbar ul").append(welcomeMessage);
   $("#loginModal").modal("hide");
   $("body").removeClass("modal-open");

@@ -69,7 +69,7 @@ session_start();
           <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
           <li><a class="nav-link" href="#contact">Contacto</a></li>
           <?php if (isset($_SESSION['nombreUsuario'])) : ?>
-            <li><a href="#">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
+            <li><a href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
           <?php else : ?>
             <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
             <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
@@ -313,6 +313,7 @@ session_start();
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+  <script src="assets/js/menu-responsive.js"></script>
   <script src="assets/js/modal.js"></script>
   <script src="assets/js/login_register.js"></script>
   <script src="assets/js/slider.js"></script>

@@ -1,0 +1,144 @@
+/*--------------------------------------------------------------
+# Panel de Administración
+--------------------------------------------------------------*/
+
+/* Importar Google Fonts para tipografía mejorada */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+/* Estilos Generales */
+body#userProfilePage {
+  background-color: #f4f7fc;
+  font-family: 'Nunito', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+a {
+  color: #007bff;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #0056b3;
+}
+
+/* Navbar Personalizada */
+#userHeader .navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#userHeader .navbar-brand {
+  color: white;
+  font-weight: 700;
+}
+
+#userHeader .navbar-nav .nav-link {
+  color: white;
+}
+
+/* Tarjetas con estilo avanzado */
+.card {
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.12);
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.card-body p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+/* Botón de acción principal */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  box-shadow: none;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.btn-primary:hover {
+  background-color: #005ecb;
+  border-color: #005cbf;
+}
+
+/* Botón de acción peligrosa */
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  box-shadow: none;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* Footer Estilizado */
+#userFooter {
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Mejoras Responsivas */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 20px;
+  }
+}
+
+/* Personalización Avanzada de Formularios */
+.form-control {
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Estilos para elementos específicos del perfil del usuario */
+#userPersonalInfoCard .card-header, #userApplicationsCard .card-header, #userUploadCvCard .card-header, #userAccountSettingsCard .card-header {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Adaptaciones para una mejor visualización en dispositivos móviles */
+@media (max-width: 576px) {
+  body#userProfilePage {
+    padding-top: 60px; /* Ajuste para el navbar en dispositivos móviles */
+  }
+  
+  #userHeader .navbar {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

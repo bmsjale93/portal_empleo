@@ -1,0 +1,8 @@
+CREATE TABLE Curriculums (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuarioID INT NOT NULL,
+    nombreArchivo VARCHAR(255) NOT NULL,
+    rutaArchivo VARCHAR(255) NOT NULL,
+    fechaSubida TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuarioID) REFERENCES Usuarios(ID)
+);
