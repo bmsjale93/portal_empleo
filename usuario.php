@@ -3,7 +3,7 @@ session_start();
 include 'assets/database/db.php';
 
 if (!isset($_SESSION['userID'])) {
-  echo "No se encuentra el ID"; // Redirige al usuario a la página de inicio de sesión si no está logueado
+  header ("index.php");
   exit;
 }
 
@@ -184,7 +184,6 @@ $stmt->close();
 
   <script src="assets/js/modal.js"></script>
   <script src="assets/js/login_register.js"></script>
-  <script src="assets/js/application-status.js"></script>
   <script src="assets/js/delete_account.js"></script>
   <script src="assets/js/upload_cv.js"></script>
   <script src="assets/js/delete_cv.js"></script>
