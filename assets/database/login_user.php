@@ -1,8 +1,8 @@
 <?php
-include 'db.php'; // Asegúrate de que este archivo no genere salida alguna.
+include 'db.php';
 session_start();
 
-header('Content-Type: application/json'); // Especifica el tipo de contenido esperado.
+header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = isset($_POST['email']) ? $_POST['email'] : '';

@@ -1,9 +1,5 @@
 <?php
 session_start();
-?>
-
-<?php
-session_start();
 include 'assets/database/db.php';
 
 // Consulta para obtener categorías únicas
@@ -59,7 +55,7 @@ $conn->close();
         <div class="container d-flex justify-content-between">
             <div class="contact-info d-flex align-items-center">
                 <i class="fa fa-envelope d-flex align-items-center">
-                    <a href="mailto:contact@example.com">contacto@trabajoempleo.com</a>
+                    <a href="mailto:contacto@worknow.com">contacto@worknow.com</a>
                 </i>
                 <i class="fa fa-phone d-flex align-items-center ms-4">
                     <span>+34 612 612 612</span>
@@ -79,13 +75,13 @@ $conn->close();
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex justify-content-between">
             <div id="logo">
-                <h1><a href="index.html">Work<span>Now</span></a></h1>
+                <h1><a href="index.php">Work<span>Now</span></a></h1>
             </div>
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link active" href="index.php">Inicio</a></li>
                     <li><a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo</a></li>
-                    <li><a class="nav-link" href="contacto.html">Contacto</a></li>
+                    <li><a class="nav-link" href="contacto.php">Contacto</a></li>
                     <?php if (isset($_SESSION['userID'])) : ?>
                         <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
                         <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
@@ -103,7 +99,7 @@ $conn->close();
                     <ul>
                         <li><a class="nav-link active" href="index.php">Inicio</a></li>
                         <li><a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo</a></li>
-                        <li><a class="nav-link" href="contacto.html">Contacto</a></li>
+                        <li><a class="nav-link" href="contacto.php">Contacto</a></li>
                         <?php if (isset($_SESSION['userID'])) : ?>
                             <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
                             <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
@@ -119,7 +115,6 @@ $conn->close();
             <i class="fa fa-bars mobile-nav-toggle"></i>
         </div>
     </header>
-
     <!-- ======= Hero Section ======= -->
     <section id="hero-ofertas">
         <div class="hero-content">
@@ -163,7 +158,7 @@ $conn->close();
     <!-- Footer -->
     <footer class="py-4 bg-dark text-white-50">
         <div class="container text-center">
-            <small>Portal de Búsqueda de Trabajo © 2024</small>
+            <small>Portal de Búsqueda de Trabajo © 2024 | Desarrollado por Alejandro Delgado & Álzaro Alvarez |</small>
         </div>
     </footer>
 

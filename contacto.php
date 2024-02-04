@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,69 +39,79 @@
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-flex align-items-center">
         <div class="container d-flex justify-content-between">
-        <div class="contact-info d-flex align-items-center">
-            <i class="fa fa-envelope d-flex align-items-center">
-            <a href="mailto:contact@example.com">contacto@trabajoempleo.com</a>
-            </i>
-            <i class="fa fa-phone d-flex align-items-center ms-4">
-            <span>+34 612 612 612</span>
-            </i>
-        </div>
-        <div class="social-links d-flex align-items-center">
-            <a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
-        </div>
+            <div class="contact-info d-flex align-items-center">
+                <i class="fa fa-envelope d-flex align-items-center">
+                    <a href="mailto:contacto@worknow.com">contacto@worknow.com</a>
+                </i>
+                <i class="fa fa-phone d-flex align-items-center ms-4">
+                    <span>+34 612 612 612</span>
+                </i>
+            </div>
+            <div class="social-links d-flex align-items-center">
+                <a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
         </div>
     </section>
-  <!-- End Top Bar -->
+    <!-- End Top Bar -->
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center">
-    <div class="container d-flex justify-content-between">
-      <div id="logo">
-        <h1><a href="index.html">Work<span>Now</span></a></h1>
-      </div>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link active" href="index.php">Inicio</a></li>
-          <li><a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo</a></li>
-          <li><a class="nav-link" href="contacto.html">Contacto</a></li>
-          <?php if (isset($_SESSION['userID'])) : ?>
-            <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
-            <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
-            <li><a class="nav-link" href="assets/database/logout.php">Cerrar Sesión</a></li>
-          <?php else : ?>
-            <!-- Si el usuario no ha iniciado sesión, mostrar opciones de inicio de sesión y registro -->
-            <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
-            <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
-          <?php endif; ?>
-        </ul>
-      </nav>
-      <div>
-        <!-- Menú (oculto por defecto) -->
-        <nav id="navbar-mobile" class="navbar-mobile">
-          <ul>
-            <li><a class="nav-link active" href="index.php">Inicio</a></li>
-            <li><a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo</a></li>
-            <li><a class="nav-link" href="contacto.html">Contacto</a></li>
-            <?php if (isset($_SESSION['userID'])) : ?>
-              <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
-              <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
-              <li><a class="nav-link" href="assets/database/logout.php">Cerrar Sesión</a></li>
-            <?php else : ?>
-              <!-- Si el usuario no ha iniciado sesión, mostrar opciones de inicio de sesión y registro -->
-              <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
-              <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
-            <?php endif; ?>
-          </ul>
-        </nav>
-      </div>
-      <i class="fa fa-bars mobile-nav-toggle"></i>
-    </div>
-  </header>
-    
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex justify-content-between">
+            <div id="logo">
+                <h1><a href="index.php">Work<span>Now</span></a></h1>
+            </div>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link active" href="index.php">Inicio</a></li>
+                    <li><a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo</a></li>
+                    <li><a class="nav-link" href="contacto.php">Contacto</a></li>
+                    <?php if (isset($_SESSION['userID'])) : ?>
+                        <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
+                        <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
+                        <li><a class="nav-link" href="assets/database/logout.php">Cerrar Sesión</a></li>
+                    <?php else : ?>
+                        <!-- Si el usuario no ha iniciado sesión, mostrar opciones de inicio de sesión y registro -->
+                        <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+                        <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
+            <div>
+                <!-- Menú (oculto por defecto) -->
+                <nav id="navbar-mobile" class="navbar-mobile">
+                    <ul>
+                        <li><a class="nav-link active" href="index.php">Inicio</a></li>
+                        <li><a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo</a></li>
+                        <li><a class="nav-link" href="contacto.php">Contacto</a></li>
+                        <?php if (isset($_SESSION['userID'])) : ?>
+                            <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
+                            <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
+                            <li><a class="nav-link" href="assets/database/logout.php">Cerrar Sesión</a></li>
+                        <?php else : ?>
+                            <!-- Si el usuario no ha iniciado sesión, mostrar opciones de inicio de sesión y registro -->
+                            <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+                            <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
+                        <?php endif; ?>
+                    </ul>
+                </nav>
+            </div>
+            <i class="fa fa-bars mobile-nav-toggle"></i>
+        </div>
+    </header>
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero-ofertas">
+        <div class="hero-content">
+            <div class="text-ofertas">
+                <h2>¿Tienes alguna duda?</h2>
+                <p>Estamos aquí para resolverlas.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- ======= Contact Section ======= -->
     <section id="contact">
         <div class="container" data-aos="fade-up">
@@ -105,7 +119,7 @@
                 <h2>Contacto</h2>
                 <p>Bienvenido/a a nuestra sección de contacto. Valoramos tu interés y estamos aquí para atenderte de la mejor manera posible. Si tienes consultas, comentarios o necesitas asistencia, no dudes en ponerte en contacto con nuestro equipo experto. Estamos comprometidos a responder a tus inquietudes de manera eficiente.</p>
             </div>
-   
+
             <div class="row contact-info">
                 <div class="col-md-4">
                     <div class="contact-address">
@@ -114,7 +128,7 @@
                         <address>C. Tajo, s/n, 28670 Villaviciosa de Odón, Madrid</address>
                     </div>
                 </div>
-   
+
                 <div class="col-md-4">
                     <div class="contact-phone">
                         <i class="bi bi-phone"></i>
@@ -122,7 +136,7 @@
                         <p><a href="tel:+155895548855">+34 612 612 612</a></p>
                     </div>
                 </div>
-   
+
                 <div class="col-md-4">
                     <div class="contact-email">
                         <i class="bi bi-envelope"></i>
@@ -132,11 +146,11 @@
                 </div>
             </div>
         </div>
-   
+
         <div class="container mb-4">
             <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=C.%20Tajo,%20s/n,%2028670%20Villaviciosa%20de%20Od%C3%B3n,%20Madrid+(Your%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/sport-gps/">hiking gps</a></iframe>
         </div>
-    
+
         <div class="container">
             <div class="form">
                 <form action="forms/contact.php" method="post" role="form" class="php-email-form">
@@ -154,7 +168,7 @@
                     <div class="form-group mt-3">
                         <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
                     </div>
-        
+
                     <div class="my-3">
                         <div class="loading">Cargando</div>
                         <div class="error-message"></div>
@@ -162,19 +176,19 @@
                     </div>
                     <section id="hero-btn">
                         <div class="hero-content-btn">
-                            <a href="aplicar.html" class="btn-projects scrollto">Eviar mensaje</a>
+                            <a href="aplicar.html" class="btn-projects scrollto">Enviar mensaje</a>
                         </div>
                     </section>
                 </form>
             </div>
         </div>
-      </section><!-- End Contact Section -->
-  </section>
+    </section><!-- End Contact Section -->
+    </section>
 
-  <!-- Footer -->
+    <!-- Footer -->
     <footer class="py-4 bg-dark text-white-50">
         <div class="container text-center">
-            <small>Portal de Búsqueda de Trabajo © 2024</small>
+            <small>Portal de Búsqueda de Trabajo © 2024 | Desarrollado por Alejandro Delgado & Álzaro Alvarez |</small>
         </div>
     </footer>
 
@@ -187,8 +201,8 @@
     <!-- Carga Ventanas Emergentes -->
     <script>
         $(document).ready(function() {
-        $("#login-modal-container").load("loginModal.html");
-        $("#register-modal-container").load("registerModal.html");
+            $("#login-modal-container").load("loginModal.html");
+            $("#register-modal-container").load("registerModal.html");
         });
     </script>
 
@@ -197,7 +211,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <script src="assets/js/main.js"></script>
-
+    <script src="assets/js/menu-responsive.js"></script>
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/login_register.js"></script>
 </body>
+
 </html>

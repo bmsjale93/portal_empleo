@@ -25,13 +25,10 @@ function loadOfferDetails(ofertaId) {
         $(".section-ofertas .text-ofertas:nth-child(1) p").html(
           oferta.Descripcion
         );
-        // Actualizar otros elementos según sea necesario
       } else {
-        // Manejar el caso de que no se encuentre la oferta
       }
     },
     error: function () {
-      // Manejar errores
     },
   });
 }

@@ -2,7 +2,6 @@
 # Panel de Administración
 --------------------------------------------------------------*/
 
-/* Importar Google Fonts para tipografía mejorada */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap');
 
 /* Estilos Generales */
@@ -134,7 +133,7 @@ a:hover {
 /* Adaptaciones para una mejor visualización en dispositivos móviles */
 @media (max-width: 576px) {
   body#userProfilePage {
-    padding-top: 60px; /* Ajuste para el navbar en dispositivos móviles */
+    padding-top: 60px
   }
   
   #userHeader .navbar {

@@ -1,12 +1,12 @@
 <?php
-include 'db.php'; // Conexión a la base de datos
+include 'db.php';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = trim($_POST['Nombre']);
     $email = trim($_POST['Email']);
     $password = $_POST['Password'];
-    $confirmPassword = $_POST['confirmPassword']; // Asegúrate de incluir este campo en tu formulario HTML
+    $confirmPassword = $_POST['confirmPassword'];
     $direccion = trim($_POST['Direccion']);
     $ciudad = trim($_POST['Ciudad']);
     $pais = trim($_POST['Pais']);

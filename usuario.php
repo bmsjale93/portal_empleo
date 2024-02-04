@@ -169,9 +169,11 @@ $stmt->close();
       </div>
     </div>
   </main>
-  <footer class="bg-dark text-white py-4">
+  
+  <!-- Footer -->
+  <footer class="py-4 bg-dark text-white-50">
     <div class="container text-center">
-      Portal de Búsqueda de Trabajo © 2024
+      <small>Portal de Búsqueda de Trabajo © 2024 | Desarrollado por Alejandro Delgado & Álzaro Alvarez |</small>
     </div>
   </footer>
 

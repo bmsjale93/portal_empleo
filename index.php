@@ -41,7 +41,7 @@ session_start();
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
         <i class="fa fa-envelope d-flex align-items-center">
-          <a href="mailto:contact@example.com">contacto@trabajoempleo.com</a>
+          <a href="mailto:contacto@worknow.com">contacto@worknow.com</a>
         </i>
         <i class="fa fa-phone d-flex align-items-center ms-4">
           <span>+34 612 612 612</span>
@@ -57,17 +57,18 @@ session_start();
   </section>
   <!-- End Top Bar -->
 
+
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex justify-content-between">
       <div id="logo">
-        <h1><a href="index.html">Work<span>Now</span></a></h1>
+        <h1><a href="index.php">Work<span>Now</span></a></h1>
       </div>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link active" href="index.php">Inicio</a></li>
           <li><a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo</a></li>
-          <li><a class="nav-link" href="contacto.html">Contacto</a></li>
+          <li><a class="nav-link" href="contacto.php">Contacto</a></li>
           <?php if (isset($_SESSION['userID'])) : ?>
             <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
             <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
@@ -85,7 +86,7 @@ session_start();
           <ul>
             <li><a class="nav-link active" href="index.php">Inicio</a></li>
             <li><a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo</a></li>
-            <li><a class="nav-link" href="contacto.html">Contacto</a></li>
+            <li><a class="nav-link" href="contacto.php">Contacto</a></li>
             <?php if (isset($_SESSION['userID'])) : ?>
               <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
               <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
@@ -109,7 +110,7 @@ session_start();
       <h2>Bienvenidos a<br>Work <span>Now</span></h2>
       <div>
         <a href="ofertas_trabajo.php" class="btn-get-started">Ofertas de Trabajo</a>
-        <a href="contacto.html" class="btn-projects">Contáctanos Ahora</a>
+        <a href="contacto.php" class="btn-projects">Contáctanos Ahora</a>
       </div>
     </div>
 
@@ -239,8 +240,8 @@ session_start();
                   <img src="assets/img/quote-sign-right.png" class="quote-sign-right" alt="">
                 </p>
                 <img src="assets/img/testimonial-1.jpg" class="testimonial-img" alt="">
-                <h3>Laura Gómez</h3>
-                <h4>Diseñadora &amp; Gráfica</h4>
+                <h3>Pedro Pascal</h3>
+                <h4>Diseñador Gráfico</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -252,8 +253,8 @@ session_start();
                   <img src="assets/img/quote-sign-right.png" class="quote-sign-right" alt="">
                 </p>
                 <img src="assets/img/testimonial-2.jpg" class="testimonial-img" alt="">
-                <h3>Carlos Martín</h3>
-                <h4>Ingeniero de Software</h4>
+                <h3>Xin Zao</h3>
+                <h4>Ingeniera de Software</h4>
               </div>
             </div><!-- End testimonial item -->
 
@@ -261,7 +262,7 @@ session_start();
               <div class="testimonial-item">
                 <p>
                   <img src="assets/img/quote-sign-left.png" class="quote-sign-left" alt="">
-                  Como gerente de marketing, siempre busco los mejores talentos para mi equipo. WorkNow ha sido una herramienta invaluable para encontrar candidatos calificados y motivados. ¡El proceso de contratación nunca ha sido tan fácil!
+                  Como gerente de marketing, siempre busco los mejores talentos para mi equipo. WorkNow ha sido una herramienta invaluable para encontrar candidatos calificados y motivados.
                   <img src="assets/img/quote-sign-right.png" class="quote-sign-right" alt="">
                 </p>
                 <img src="assets/img/testimonial-3.jpg" class="testimonial-img" alt="">
@@ -274,7 +275,7 @@ session_start();
               <div class="testimonial-item">
                 <p>
                   <img src="assets/img/quote-sign-left.png" class="quote-sign-left" alt="">
-                  Trabajar de manera independiente puede ser desafiante, especialmente al buscar clientes. Desde que me uní a WorkNow, he tenido un flujo constante de proyectos interesantes. Es una plataforma que realmente apoya a los freelancers.
+                  Trabajar de manera independiente puede ser desafiante, especialmente al buscar clientes. Desde que me uní a WorkNow, he tenido un flujo constante de proyectos interesantes.
                   <img src="assets/img/quote-sign-right.png" class="quote-sign-right" alt="">
                 </p>
                 <img src="assets/img/testimonial-4.jpg" class="testimonial-img" alt="">
@@ -287,15 +288,14 @@ session_start();
               <div class="testimonial-item">
                 <p>
                   <img src="assets/img/quote-sign-left.png" class="quote-sign-left" alt="">
-                  Como recién graduada, me enfrentaba al desafío de encontrar mi primer empleo. WorkNow no solo me ayudó a encontrar oportunidades adecuadas, sino que también ofrecía recursos para mejorar mi CV y prepararme para entrevistas. ¡Logré mi primer empleo en menos de un mes!
+                  Me enfrenté al desafío de encontrar mi primer empleo. WorkNow no solo me ayudó a encontrar oportunidades adecuadas, sino que también ofrecía recursos para mejorar mi CV.
                   <img src="assets/img/quote-sign-right.png" class="quote-sign-right" alt="">
                 </p>
                 <img src="assets/img/testimonial-5.jpg" class="testimonial-img" alt="">
-                <h3>Ana Belén Vargas</h3>
-                <h4>Recién Graduada</h4>
+                <h3>Daddy Yankee 4ever</h3>
+                <h4>Recién Graduado</h4>
               </div>
             </div><!-- End testimonial item -->
-
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -308,7 +308,7 @@ session_start();
   <!-- Footer -->
   <footer class="py-4 bg-dark text-white-50">
     <div class="container text-center">
-      <small>Portal de Búsqueda de Trabajo © 2024</small>
+      <small>Portal de Búsqueda de Trabajo © 2024 | Desarrollado por Alejandro Delgado & Álzaro Alvarez |</small>
     </div>
   </footer>
 

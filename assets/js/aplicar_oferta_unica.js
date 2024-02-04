@@ -9,7 +9,6 @@ function aplicarOferta(ofertaID) {
       success: function (response) {
         if (response.success) {
           alert("Has aplicado exitosamente.");
-          // Opcional: Actualizar la UI para reflejar que el usuario ha aplicado
         } else {
           alert(response.message);
         }
