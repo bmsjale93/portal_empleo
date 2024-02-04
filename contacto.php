@@ -54,36 +54,49 @@
   <!-- End Top Bar -->
 
   <!-- ======= Header ======= -->
-    <header id="header" class="d-flex align-items-center">
-        <div class="container d-flex justify-content-between">
-            <div id="logo">
-                <h1><a href="index.html">Work<span>Now</span></a></h1>
-            </div>
-            <nav id="navbar" class="navbar">
-                <ul>
-                <li><a class="nav-link active" href="#hero">Inicio</a></li>
-                <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
-                <li><a class="nav-link" href="#contact">Contacto</a></li>
-                    <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
-                    <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
-                </ul>
-            </nav>
-            <div>
-                <!-- Menú (oculto por defecto) -->
-                <nav id="navbar-mobile" class="navbar-mobile">
-                <ul>
-                    <li><a class="nav-link active" href="#hero">Inicio</a></li>
-                    <li><a class="nav-link" href="#about">Ofertas de Trabajo</a></li>
-                    <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
-                    <li><a class="nav-link register-trigger" href="registerModal">Registrarse</a>
-                    <li><a class="nav-link" href="#contact">Contacto</a></li>
-                </ul>
-                </nav>
-            </div>
-            <i class="fa fa-bars mobile-nav-toggle"></i>
-        </div>
-    </header>
-
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+      <div id="logo">
+        <h1><a href="index.html">Work<span>Now</span></a></h1>
+      </div>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link active" href="index.php">Inicio</a></li>
+          <li><a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo</a></li>
+          <li><a class="nav-link" href="contacto.html">Contacto</a></li>
+          <?php if (isset($_SESSION['userID'])) : ?>
+            <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
+            <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
+            <li><a class="nav-link" href="assets/database/logout.php">Cerrar Sesión</a></li>
+          <?php else : ?>
+            <!-- Si el usuario no ha iniciado sesión, mostrar opciones de inicio de sesión y registro -->
+            <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+            <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
+          <?php endif; ?>
+        </ul>
+      </nav>
+      <div>
+        <!-- Menú (oculto por defecto) -->
+        <nav id="navbar-mobile" class="navbar-mobile">
+          <ul>
+            <li><a class="nav-link active" href="index.php">Inicio</a></li>
+            <li><a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo</a></li>
+            <li><a class="nav-link" href="contacto.html">Contacto</a></li>
+            <?php if (isset($_SESSION['userID'])) : ?>
+              <!-- Si el usuario ha iniciado sesión, mostrar su nombre y la opción de cerrar sesión -->
+              <li><a class="nav-link" href="usuario.php">Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreUsuario']); ?></a></li>
+              <li><a class="nav-link" href="assets/database/logout.php">Cerrar Sesión</a></li>
+            <?php else : ?>
+              <!-- Si el usuario no ha iniciado sesión, mostrar opciones de inicio de sesión y registro -->
+              <li><a class="nav-link login-trigger" href="#loginModal">Iniciar Sesión</a></li>
+              <li><a class="nav-link register-trigger" href="#registerModal">Registrarse</a></li>
+            <?php endif; ?>
+          </ul>
+        </nav>
+      </div>
+      <i class="fa fa-bars mobile-nav-toggle"></i>
+    </div>
+  </header>
     
     <!-- ======= Contact Section ======= -->
     <section id="contact">

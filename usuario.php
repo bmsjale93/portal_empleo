@@ -22,14 +22,15 @@ if (!$userInfo) {
 }
 
 // Obtener las aplicaciones del usuario
-$aplicacionesSql = "SELECT Aplicaciones.FechaAplicacion, Ofertas.Titulo, Ofertas.Descripcion 
-                    FROM Aplicaciones 
-                    JOIN Ofertas ON Aplicaciones.OfertaID = Ofertas.ID 
-                    WHERE Aplicaciones.UsuarioID = ?";
+$aplicacionesSql = "SELECT Aplicaciones.ID as AplicacionID, Aplicaciones.FechaAplicacion, Ofertas.Titulo, Ofertas.Descripcion 
+          FROM Aplicaciones 
+          JOIN Ofertas ON Aplicaciones.OfertaID = Ofertas.ID 
+          WHERE Aplicaciones.UsuarioID = ?";
 $stmt = $conn->prepare($aplicacionesSql);
 $stmt->bind_param("i", $userID);
 $stmt->execute();
 $aplicacionesResult = $stmt->get_result();
+
 
 $aplicaciones = [];
 while ($aplicacion = $aplicacionesResult->fetch_assoc()) {
@@ -64,7 +65,7 @@ $stmt->close();
               <a class="nav-link" href="index.php">Inicio</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="perfil_usuario.php">Mi Perfil <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="ofertas_trabajo.php">Ofertas de Trabajo<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="assets/database/logout.php">Cerrar Sesión</a>
@@ -106,10 +107,9 @@ $stmt->close();
                         <p><?php echo htmlspecialchars($aplicacion['Descripcion']); ?></p>
                         <small>Aplicado el: <?php echo htmlspecialchars($aplicacion['FechaAplicacion']); ?></small>
                       </div>
-                      <button class="btn btn-danger btn-sm delete-application" data-id="<?php echo $aplicacion['ID']; ?>">Borrar</button>
+                      <button class="btn btn-danger btn-sm delete-application" data-id="<?php echo $aplicacion['AplicacionID']; ?>">Borrar</button>
                     </li>
                   <?php endforeach; ?>
-
                 </ul>
               <?php else : ?>
                 <p>No has aplicado a ninguna oferta aún.</p>
